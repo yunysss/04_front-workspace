@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 및 멀티미디어 관련 태그</title>
+</head>
+<body>
+    <h1>이미지 관련 태그</h1>
+    <!--
+        <img src="삽입하고자하는 이미지의 경로" [alt="이미지설명문구" width="가로길이(px/%)" height="세로길이(px/%)"]>
+    -->
+    <h3>* src 속성</h3>
+    <img src="resources/image/city1.jpg">
+
+    <h3>* alt속성</h3>
+    <p>
+        - 사진의 경로가 잘못되거나 이미지를 제대로 표현할 수 없는 경우 대체 텍스트의 용도 <br>
+        - 시각장애인들을 위한 스크린리더(화면낭독기)에서 이미지를 읽어주는 설명 문구
+    </p>
+    <img src="resources/image/river1.jpg" alt="이 사진은 강 사진입니다.">
+    <br>
+    <img src="resources/image/river1.png" alt="이 사진은 강 사진입니다.">
+
+    <h3>* width와 height 속성</h3>
+    <p>
+        이미지의 가로, 세로 길이 조정 가능 <br>
+        고정길이(px), 가변길이(%)로 지정 => 단위 생략시 기본값은 px
+    </p>
+
+    <h4>고정길이(px) : 화면사이즈가 조정이 되어도 이미지의 크기는 변동없음</h4>
+    <img src="resources/image/flower1.jpg" width="200px" height="300">
+    <img src="resources/image/flower2.jpg" width="200px" height="300">
+    <img src="resources/image/flower3.jpg" width="200px" height="300">
+    <img src="resources/image/flower4.jpg" width="200px" height="300">
+    <img src="resources/image/flower5.jpg" width="200px" height="300">
+
+    <br>
+
+    <h4>가변길이(%) : 화면사이즈 또는 부모요소사이즈에 따라 이미지의 크기도 같이 변동</h4>
+    <img src="resources/image/flower1.jpg" width="15%" height="300">
+    <img src="resources/image/flower2.jpg" width="15%" height="300">
+    <img src="resources/image/flower3.jpg" width="15%" height="300">
+    <img src="resources/image/flower4.jpg" width="15%" height="300">
+    <img src="resources/image/flower5.jpg" width="15%" height="300">
+
+    <hr>
+
+    <h1>멀티미디어 관련 태그</h1>
+
+    <h3>오디오 관련 태그</h3>
+    <!--
+        <audio src="" controls autoplay loop></audio>
+
+        src : 오디오 경로
+        controls : 재생도구 출력 여부
+        autoplay : 자동재생여부 지정 (크롬 x, IE o)
+        loop : 반복재생여부 지정
+    -->
+    <audio src="resources/audio/major.mp3" controls autoplay loop></audio>
+
+    <!--
+        <video src="" controls autoplay loop width="" height="" poster="썸네일 이미지 경로"></video>
+    -->
+    <video src="resources/video/video1.mp4" controls autoplay loop 
+                width="400" height="200" poster="resources/image/river1.jpg"></video>
+
+</body>
+</html>

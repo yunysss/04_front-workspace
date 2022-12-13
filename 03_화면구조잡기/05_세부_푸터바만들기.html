@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{box-sizing:border-box;}
+        #footer{width:1000px; height:150px;} /*이 스타일 안가져감*/
+
+        #footer>div{width:100%;}
+        #footer-1{height:20%;}
+        #footer-2{height:80%;}
+
+        #footer-2>p{
+            margin:0;
+            width:100%;
+            box-sizing:border-box;
+            font-size:12px;
+            color:rgb(110, 110, 110);
+        }
+        #p1{height:80%; padding:5px 15px;}
+        #p2{height:20%; text-align: center;}
+
+        #footer-1>a{
+            text-decoration:none;
+            color:rgb(110, 110, 110);
+            font-weight:600;
+            margin:15px;
+            vertical-align:middle;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="footer">
+        <div id="footer-1">
+            <a href="">이용약관</a> |
+            <a href="">개인정보취급방침</a> |
+            <a href="">인재채용</a> |
+            <a href="">고객센터</a>
+        </div>
+        <div id="footer-2">
+            <p id="p1">
+                · 상호명 : GooDee Academy <br>
+                · 대표자 : 이승엽 <br>
+                · 전화 : 02-2108-5900 <br>
+                · 개인정보책임자 : 주승재 / jsj@goodee.co.kr <br>
+                · 본관 : (08505) 서울특별시 금천구 가산디지털2로 115 (가산동, 대륭테크노타운3차) 509호, 811호, 1109-1호
+            </p>
+            <p id="p2">
+                Copyright ⓒ GooDee Academy. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

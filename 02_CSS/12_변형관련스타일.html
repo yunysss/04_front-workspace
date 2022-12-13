@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변형 관련 스타일</title>
+    <style>
+        img{width:200px;}
+
+        .trans1:hover{
+            transform:translateX(50px); /*오른쪽:양수 왼쪽:음수*/
+        }
+        .trans2:hover{
+            transform:translateY(50px); /*아래:양수 위:음수*/
+        }
+        .trans3:hover{
+            transform:translate(50px, 30px);
+        }
+        .trans4:hover{
+            transform:scaleX(0.5); /*배수 입력*/
+            transform:scaleX(-2); /*음수:뒤집힘*/
+        }
+        .trans5:hover{
+            transform:scaleY(0.5);
+        }
+        .trans6:hover{
+            transform:scale(0.5);
+            transform:scale(2, 3);
+        }
+        .trans7:hover{
+            transform:rotate(45deg);
+        }
+        .trans8:hover{
+            transform:skewX(-45deg);
+        }
+        .trans9:hover{
+            transform:skewY(45deg);
+        }
+        .trans10:hover{
+            transform:skew(20deg, 20deg);
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>변형 관련 스타일 : transform</h1>
+    
+    <h3>좌우로 움직이기</h3>
+    <img src="resources/image/flower1.jpg" class="trans1">
+    <hr>
+
+    <h3>상하로 움직이기</h3>
+    <img src="resources/image/flower2.jpg" class="trans2">
+    <hr>
+
+    <h3>대각선으로 움직이기</h3>
+    <img src="resources/image/flower3.jpg" class="trans3">
+    <hr>
+
+    <h3>가로로 확대 축소</h3>
+    <img src="resources/image/flower4.jpg" class="trans4">
+    <hr>
+
+    <h3>세로로 확대 축소</h3>
+    <img src="resources/image/flower5.jpg" class="trans5">
+    <hr>
+
+    <h3>전체 확대 축소</h3>
+    <img src="resources/image/river1.jpg" class="trans6">
+    <hr>
+
+    <h3>지정한 각도만큼 회전</h3>
+    <img src="resources/image/river2.jpg" class="trans7">
+    <hr>
+
+    <h3>지정한 각도만큼 가로로 뒤틀기</h3>
+    <img src="resources/image/river3.jpg" class="trans8">
+    <hr>
+
+    <h3>지정한 각도만큼 세로로 뒤틀기</h3>
+    <img src="resources/image/forest1.jpg" class="trans9">
+    <hr>
+
+    <h3>지정한 각도만큼 전체 뒤틀기</h3>
+    <img src="resources/image/forest2.jpg" class="trans10">
+    <hr>
+
+</body>
+</html>

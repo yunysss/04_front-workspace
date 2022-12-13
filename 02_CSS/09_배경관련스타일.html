@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경 관련 스타일</title>
+    <style>
+        #div-bg{
+            background-color:white;
+            border:30px solid blue;
+            padding:20px;
+            width:50%;
+            box-sizing:border-box;
+        }
+
+        .div-test{
+            background:yellow;
+            margin:30px;
+            border:10px dashed black;
+            padding:20px;
+        }
+        #div1{background-clip:border-box;}
+        #div2{background-clip:padding-box;}
+        #div3{background-clip:content-box;}
+
+        #bg-img{
+            border:1px solid black;
+            width:70%;
+            height:800px;
+
+            background-image:url('resources/image/bgsample.jpg');
+            background-repeat:repeat; /*요소에 가득 찰때까지 가로/세로 반복 (기본값)*/
+            background-repeat:repeat-x; 
+            background-repeat:repeat-y;
+            background-repeat:no-repeat;
+
+            background-size:auto;
+            background-size:contain;
+            background-size:cover;
+            background-size:150px 100px;
+            background-size:80% 40%;
+
+            background-position:right top;
+            background-position:center center;
+            background-position:30px 50px;
+            background-position:30% 70%;
+
+            background-attachment:scroll;
+            background-attachment:fixed;
+        }
+    </style>
+</head>
+<body style="background-color:skyblue;">
+    <h1>배경 관련 스타일 (background~)</h1>
+
+    <h3>background[-color] : 배경색 지정하고자 할 때 사용</h3>
+
+    <div id="div-bg">
+        별이 헤는 풀이 사람들의 밤이 버리었습니다. 아무 하늘에는 불러 까닭이요, 소녀들의 이름과, 자랑처럼 거외다. 한 나는 묻힌 자랑처럼 걱정도 때 소학교 봅니다. 계절이 가을 파란 별빛이 듯합니다. 강아지, 불러 이런 남은 소녀들의 하나의 경, 이웃 봅니다. 별을 한 멀듯이, 별에도 추억과 비둘기, 무성할 이제 봅니다. 슬퍼하는 위에 위에 나는 있습니다. 애기 보고, 이름자를 하늘에는 흙으로 있습니다. 나의 까닭이요, 슬퍼하는 마디씩 봅니다.
+    </div>
+
+    <hr>
+
+    <h3>background-clip : 배경을 적용시키고자 하는 범위를 지정할 때 사용</h3>
+    <pre>
+    선택자{
+        background-clip:border-box(기본값)|padding-box|content-box;
+    }
+    </pre>
+
+    <div class="div-test" id="div1">노루, 헤는 계절이 헤일 강아지, 같이 하나에 이런 사랑과 계십니다. 내일 하나에 하늘에는 아스라히 계절이 이 멀듯이, 어머니, 계십니다. 나는 이름과, 새워 프랑시스 하나에 않은 언덕 이름을 까닭입니다. 하나의 내일 말 하나에 피어나듯이 동경과 거외다. 불러 시인의 경, 이런 슬퍼하는 봅니다. 마디씩 별이 북간도에 멀듯이, 이름과, 별빛이 아침이 벌써 하나 까닭입니다.</div>
+    <div class="div-test" id="div2">노루, 헤는 계절이 헤일 강아지, 같이 하나에 이런 사랑과 계십니다. 내일 하나에 하늘에는 아스라히 계절이 이 멀듯이, 어머니, 계십니다. 나는 이름과, 새워 프랑시스 하나에 않은 언덕 이름을 까닭입니다. 하나의 내일 말 하나에 피어나듯이 동경과 거외다. 불러 시인의 경, 이런 슬퍼하는 봅니다. 마디씩 별이 북간도에 멀듯이, 이름과, 별빛이 아침이 벌써 하나 까닭입니다.</div>
+    <div class="div-test" id="div3">노루, 헤는 계절이 헤일 강아지, 같이 하나에 이런 사랑과 계십니다. 내일 하나에 하늘에는 아스라히 계절이 이 멀듯이, 어머니, 계십니다. 나는 이름과, 새워 프랑시스 하나에 않은 언덕 이름을 까닭입니다. 하나의 내일 말 하나에 피어나듯이 동경과 거외다. 불러 시인의 경, 이런 슬퍼하는 봅니다. 마디씩 별이 북간도에 멀듯이, 이름과, 별빛이 아침이 벌써 하나 까닭입니다.</div>
+
+    <hr>
+
+    <h3>배경 이미지 테스트</h3>
+    <pre>
+    선택자{
+        background-image:url('이미지 경로');
+        background-repeat:repeat|repeat-x|repeat-y|no-repeat;
+        background-size:auto|contain|cover|px px|% %;
+        background-position:좌/우/가운데 위/아래/가운데|px px|% %;
+        background-attachment:scroll|fixed;
+    }
+    </pre>
+
+    <div id="bg-img"></div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
+</body>
+</html>

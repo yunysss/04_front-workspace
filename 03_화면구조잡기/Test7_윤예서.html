@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #t1, #t3{
+            background:#fcaa96;
+            color:white;
+        }
+        #t2{background:rgb(245, 245, 224)}
+
+        #wrap{
+            background:lightpink;
+            border-style:none;
+            border-radius: 10px;
+            width:500px;
+            padding:20px;
+        }
+        #wrap>fieldset{
+            background: rgb(238, 124, 130);
+            border-style:none;
+        }
+        #wrap button{
+            background:orangered;
+            color:white;
+            border-style:none;
+            border-radius: 10px;
+            width:90px;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>평가문제 1. 공지사항 작성하기 폼과 공지사항 목록 테이블을 작성하시오.</h1>
+    <form action="insert.no" method="post">
+        <fieldset>
+            <legend>공지사항 작성하기</legend>
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <td>
+                        <input type="text" name="title" id="title" placeholder="제목을 입력하시오." size="30" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>내용</th>
+                    <td>
+                        <textarea name="content" id="content" cols="32" rows="10" placeholder="내용을 입력하시오." style="resize:none" required></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><label for="uploadFile">첨부파일</label></th>
+                    <td>
+                        <input type="file" name="uploadFile" id="uploadFile"> 
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2">
+                        <br>
+                        <input type="submit" value="작성하기">
+                    </th>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+        
+    <br><br>
+
+    <table border="1">
+        <thead id="t1">
+            <tr>
+                <th>번호</th>
+                <th colspan="2">제목</th>
+                <th width="80px">작성자</th>
+                <th width="100px">작성일</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+
+        <tbody id="t2">
+            <tr>
+                <td>9</td>
+                <td width="300px">공지사항 제목 9</td>
+                <td>
+                    <input type="button" value="바로가기">
+                </td>
+                <td>user01</td>
+                <td>2021-03-29</td>
+                <td>34</td>
+            </tr>
+            
+            <tr>
+                <td>6</td>
+                <td>공지사항 제목 6</td>
+                <td>
+                    <input type="button" value="바로가기">
+                </td>
+                <td>answ445</td>
+                <td>2021-03-12</td>
+                <td>67</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>공지사항 제목 3</td>
+                <td>
+                    <input type="button" value="바로가기">
+                </td>
+                <td>testg12</td>
+                <td>2021-03-01</td>
+                <td>98</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>공지사항 제목 2</td>
+                <td>
+                    <input type="button" value="바로가기">
+                </td>
+                <td>palwe3</td>
+                <td>2021-01-02</td>
+                <td>85</td>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>공지사항 제목 1</td>
+                <td>
+                    <input type="button" value="바로가기">
+                </td>
+                <td>xml23</td>
+                <td>2020-12-24</td>
+                <td>124</td>
+            </tr>
+        </tbody>
+
+        <tfoot id="t3">
+            <th colspan="4">전체공지사항 갯수</th>
+            <th colspan="2">5개</th>
+        </tfoot>
+    </table>
+    
+    <hr>
+    <h1>평가문제2. 피자주문하기 폼을 작성하시오.</h1>
+    <form action="order.do" method="get">
+        <fieldset id="wrap">
+            <fieldset>
+                <legend><b>고객정보</b></legend>
+                <label for="userName">고객명 : </label>
+                <input type="text" name="userName" id="userName" required> <br>
+
+                <label for="phone">전화번호 : </label>
+                <input type="tel" name="phone" id="phone" required> <br>
+
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email">
+            </fieldset>
+
+            <fieldset>
+                <legend><b>피자사이즈</b></legend>
+                <input type="radio" name="size" id="small" value="small">
+                <label for="small">Small</label> <br>
+
+                <input type="radio" name="size" id="medium" value="medium"> 
+                <label for="medium">Medium</label> <br>
+
+                <input type="radio" name="size" id="large" value="large">
+                <label for="large">Large</label>
+            </fieldset>
+
+            <fieldset>
+                <legend><b>토핑선택</b></legend>
+                <input type="checkbox" name="topping" id="bacon" value="bacon">
+                <label for="bacon">베이컨</label> <br>
+
+                <input type="checkbox" name="topping" id="cheese" value="cheese">
+                <label for="cheese">치즈</label> <br>
+
+                <input type="checkbox" name="topping" id="onion" value="onion">
+                <label for="onion">양파</label> <br>
+
+                <input type="checkbox" name="topping" id="mushroom" value="mushroom">
+                <label for="mushroom">버섯</label>
+            </fieldset>
+            <br><br>
+
+            <label for="time">희망 배송 시간 : </label>
+            <input type="time" name="time" id="time" required> <br><br>
+
+            &nbsp;&nbsp;
+            <button type="submit">주문하기</button>
+        </fieldset>
+    </form>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

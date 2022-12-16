@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border:1px solid black; 
+            width:300px; 
+            height:100px;
+            background:yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 태그에 접근 테스트</h1>
+    구매자 : <input type="text"> <br><br>
+    상품명 : <input type="text" id="pName"> <br><br>
+    가격 : <input type="number" name="price"> <br><br>
+    <button onclick="purchasePrint();">입력값 출력하기</button> <br><br>
+
+    <div id="area"></div>
+    
+    <script>
+        function purchasePrint(){
+            const userName = document.getElementsByTagName("input");
+            const pName = document.getElementById("pName");
+            const price = document.getElementsByName("price");
+
+            const area = document.getElementById("area");
+
+            area.innerHTML = "구입자 : " + userName[0].value + "님 <br>";
+            area.innerHTML += "구입상품 : " + pName.value + "<br>";
+            area.innerHTML += "구매가격 : " + price[0].value + "만원";
+
+
+        }
+    </script>
+</body>
+</html>

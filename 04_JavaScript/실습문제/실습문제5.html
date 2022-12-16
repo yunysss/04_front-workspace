@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>간이 계산기 만들기</h1>
+    첫번째 값 : <input type="text" id="num1"> <br>
+    두번째 값 : <input type="text" id="num2"> <br>
+    <input type="button" value="+" id="cal1" onclick="calculator(this.value);">
+    <input type="button" value="-" id="cal2" onclick="calculator(this.value);">
+    <input type="button" value="x" id="cal3" onclick="calculator(this.value);">
+    <input type="button" value="/" id="cal4" onclick="calculator(this.value);">
+    <input type="button" value="%" id="cal5" onclick="calculator(this.value);">
+    <br><br>
+    <div id="area"></div>
+</body>
+
+<script>
+    function calculator(val){
+        let num1 = Number(document.getElementById("num1").value);
+        let num2 = Number(document.getElementById("num2").value);
+        
+        const divEl = document.getElementById("area");
+
+        let result = 0;
+        switch(val){
+            case "+": result = num1 + num2; break;
+            case "-": result = num1 - num2; break;
+            case "x": result = num1 * num2; break;
+            case "/": result = num1 / num2; break;
+            case "%": result = num1 % num2;
+        }
+        divEl.innerHTML = "계산결과 : " + result;
+        
+    }
+</script>
+</html>

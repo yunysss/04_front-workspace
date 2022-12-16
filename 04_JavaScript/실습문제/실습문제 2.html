@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            background:black;
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="area" id="area1"></div>
+    <button onclick="sizedown();">50x50</button>
+    <button onclick="originsize();">원본(100x100)</button>
+    <button onclick="sizeup();">200x200</button>
+
+    <script>
+        divEl = document.getElementById("area1");
+        function sizedown(){
+            divEl.style.width = "50px";
+            divEl.style.height = "50px";
+        }
+        function originsize(){
+            divEl.style.width = "100px";
+            divEl.style.height = "100px";
+        }
+        function sizeup(){
+            divEl.style.width = "200px";
+            divEl.style.height = "200px";
+        }
+
+    </script>
+
+    <br><br>
+
+    <div class="area" id="area2"></div>
+    <input type="color" name="colorType" id="colorType">
+    <button onclick="colorChange();">변경</button>
+
+    <script>
+        function colorChange(){
+            const divEl = document.getElementById("area2");
+            let color = document.getElementById("colorType").value;
+
+            divEl.style.backgroundColor = color;
+        }
+    </script>
+</body>
+</html>

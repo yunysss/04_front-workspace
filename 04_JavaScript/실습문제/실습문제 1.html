@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="createTable();">테이블 생성</button>
+    
+    <script>
+        function createTable(){
+            let num1 = prompt("테이블 행의 갯수는?");
+            let num2 = prompt("테이블 열의 갯수는?");
+
+            let a = "<table border='1'>";
+            for(let i=1; i<=num1; i++){
+                a += "<tr>";
+                for(let j=1; j<=num2; j++){
+                    a += "<td width='50px' height='50px'>" + (num2 * (i - 1) + j) + "</td>";
+                };
+                a += "</tr>" 
+            };
+            document.write(a);
+
+        }
+    </script>
+</body>
+</html>

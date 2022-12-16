@@ -6,20 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div, p{box-sizing:border-box;}
-        #wrap{width:1000px; height:800px; margin:auto; padding:0px 0px 30px 0px;}
-        #wrap>div{width:100%; border:1px solid lightgray; margin:0px 0px 10px 0px;}
-        #header{height:15%; position:relative;}
-        #navigator{height:5%;}
-        #content{height:60%; border-style:none!important}
-        #footer{height:20%;}
+        div, p, form, input{box-sizing:border-box;}
+        #header, #navigator, #footer, #content-1>div, #content-2>div {border:1px solid lightgray;}
+        a{text-decoration: none; color:black; font-size:12px;}
 
-        /* header 관련 스타일 */
+        #wrap{width:1000px; height:800px; margin:auto;}
+
+        /* 전반적인 큰 틀 (4개) */
+        #wrap>div{width:100%;}
+        #header{height:15%; position:relative;}
+        #navigator{height:5%; margin:10px 0px;}
+        #content{height:60%;}
+        #footer{height:20%; margin:10px 0px;}
+
+        /* header 전반적인 틀 */
         #header>div{height:100%; float:left;}
         #header-1{width:30%; position:relative;}
         #header-2{width:70%;}
 
-        #header-1>img{
+        /* header 세부 스타일 */
+        /* 로고 이미지, 검색창 공통스타일 */
+        #header-1>img, #search-form{
             margin:auto;
             position:absolute;
             left:0;
@@ -28,103 +35,11 @@
             bottom:0;
         }
 
-        #search-form{
-            width:40%;
-            height:25%;
-            margin:auto;
-            position:absolute;
-            left:0;
-            right:0;
-            top:0;
-            bottom:0;
-        }
-        #search-form>div{height:100%; float:left;}
-        #search-txt{
-            border:1px solid rgb(160, 160, 160);
-            width:80%;}
-        #search-btn{width:20%;}
-        #search-btn>button{
-            width:100%; 
-            height:100%; 
-            border:2px solid black;
-            background:white;
-        }
-        
-        /* content 관련 스타일 */
-        #content>div{height:100%; float:left; }
-        #content-1{width:70%; padding:0px 0px 20px 0px;}
-        #content-2{width:30%; padding:0px 0px 20px 5px;}
-
-        #content-1>div{width:100%; border:1px solid lightgray; margin:0px 10px 10px 0px;}
-        #content-1-ad{height:30%;}
-        #content-1-title{height:10%;}
-        #content-1-news{height:60%;}
-
-        #content-2>div{width:97%; border:1px solid lightgray; margin:0px 10px 10px 10px;}
-        #login-form{height:30%;}
-        #content-2-ad{height:72%;}
-
-        #login-form>*{width:100%;}
-        #login{height:75%;}
-        #login-etc{height:25%; text-align:center; line-height: 30px; font-size:12px;}
-
-        #login>div{height:100%; float:left;}
-        #login-id-pwd{width:70%;}
-        #login-btn{width:30%;}
-
-        #content-1-title>p{
-            height:100%; 
-            margin:0; 
-            float:left;
-            font-size:12px;
-        }
-        #content-1-title-1{
-            width:80%;
-            padding:15px;
-        }
-        #content-1-title-2{
-            width:20%;
-            text-align:center;
-            padding:15px;
-        }
-        #content-1-title-2>a{
-            text-decoration:none;
-            color:black;
-            margin:2px;
-        }
-
-        /* 로그인 관련 스타일 */
-        #login-id-pwd>input{box-sizing:border-box; width:100%; height:50%;}
-        #login-btn>button{box-sizing:border-box; width:100%; height:100%;}
-
-        #login-etc>a{
-            text-decoration:none;
-            color:black;
-            margin:5px;
-        }
-
-        /* footer 관련 스타일 */
-        #footer>div{width:100%;}
-        #footer-1{height:25%; line-height: 35px;}
-        #footer-2{height:75%;}
-
-        #footer-1>a{
-            text-decoration:none;
-            color:black;
-            margin:15px;
-            font-weight: 900;
-            font-size:12px;
-        }
-
-        #footer-2>p{width:100%; margin:0; font-size:12px; box-sizing:border-box;}
-        #p1{
-            height:70%;
-            padding:5px 15px;
-        }
-        #p2{
-            height:30%;
-            text-align:center;
-        }
+        /* 검색창 추가 스타일 */
+        #search-form{width:40%; height:25%;}
+        #search-form>*{height:100%; float:left;}
+        #search-form>input{width:80%;}
+        #search-form>button{width:20%; background:none;}
 
         /* navigator 관련 스타일 */
         #menubar{
@@ -139,18 +54,76 @@
             height:100%;
             width:20%;
             float:left;
-            box-sizing: border-box;
+            text-align:center;
         }
         #menubar a{
             text-decoration:none;
             color:rgb(160,160,160);
-            font-weight: 900;
+            font-weight: 600;
             height:100%;
-            width:100%;
             display:block;
             line-height:40px;
-            text-align:center;
+            font-size:16px;
         }
+        #menubar a:hover{color:black;}
+        
+        /* content 전반적인 틀 */
+        #content>div{height:100%; float:left; }
+        #content-1{width:70%;}
+        #content-2{width:30%;}
+
+        /* content-1 전반적인 틀 */
+        #content-1>div{width:98%;}
+        #content-1-ad{height:30%;}
+        #content-1-title{height:10%; padding:10px 20px;}
+        #content-1-news{height:55%;}
+
+        /* content-2 전반적인 틀 */
+        #content-2>div{width:100%;}
+        #login-form{height:30%;}
+        #content-2-ad{height:67%;}
+
+        #content-1-title, #content-1-news, #content-2-ad{margin-top:10px;}
+
+        /* content 세부 스타일 */
+        /* content-1-title */
+        #content-1-title a{line-height:30px;}
+        #content-1-title-1{float:left;}
+        #content-1-title-2{float:right;}
+
+        /* 로그인 폼 */
+        #login-form>*{width:100%;}
+        #login{height:75%;}
+        #login-etc{height:25%; text-align:center; line-height: 30px;}
+
+        #login>div{height:100%; float:left;}
+        #login-id-pwd{width:70%;}
+        #login-btn{width:30%;}
+
+        #login-id-pwd>input{width:100%; height:50%;}
+        #login-btn>button{width:100%; height:100%;}
+
+        /* footer 전반적인 틀 */
+        #footer>div{width:100%;}
+        #footer-1{height:25%;}
+        #footer-2{height:75%;}
+
+        /* footer 세부 스타일 */
+        #footer-1>a{
+            margin:15px;
+            font-weight: 900;
+            font-size:12px;
+            line-height: 35px;
+        }
+
+        #footer-2>p{
+            width:100%; 
+            margin:0; 
+            font-size:12px; 
+            box-sizing:border-box;
+        }
+        #p1{height:70%; padding:15px;}
+        #p2{height:30%; text-align:center;}
 
     </style>
 </head>
@@ -162,10 +135,10 @@
             </div>
             <div id="header-2">
                 <form id="search-form">
-                    <div id="search-txt"></div>
-                    <div id="search-btn">
-                        <button type="submit"><img src="resources/image/v2/search.png" height="20px" width="20px"></button>
-                    </div>
+                    <input type="search"></input>
+
+                    <button type="submit"><img src="resources/image/v2/search.png" height="20px" width="20px"></button>
+                    
                 </form>
             </div>
         </div>
@@ -186,15 +159,18 @@
                     <img src="resources/image/v2/banner.PNG" height="100%" width="100%">
                 </div>
                 <div id="content-1-title">
-                    <p id="content-1-title-1">
-                        안녕하세요 여기는 공지사항 제목이 들어오는 자리입니다.
-                    </p>
-                    <p id="content-1-title-2">
+                    <div id="content-1-title-1">
+                        <a href="">
+                            안녕하세요 여기는 공지사항 제목이 들어오는 자리입니다.
+                        </a>
+                    </div>
+                    <div id="content-1-title-2">
                         <a href="">경제</a>
                         <a href="">연예</a>
                         <a href="">사회</a>
-                    </p>
+                    </div>
                 </div>
+
                 <div id="content-1-news">
                     <img src="resources/image/v2/car.PNG" height="100%" width="100%">
                 </div>

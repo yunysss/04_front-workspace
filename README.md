@@ -339,7 +339,8 @@
     - 많은 요소들이 중첩되면서 작성 가능
     - 자손 : 바로 하위인 요소들 / 후손 : 하위 요소들 전부
     
-    ![Untitled](https://user-images.githubusercontent.com/115604544/207548087-aba145e7-0fdf-485a-a443-f6ed56e66bf0.png)
+    ![화면 캡처 2022-12-16 173423](https://user-images.githubusercontent.com/115604544/208057393-864f8757-a3b7-42de-aba9-3a5fc35caa7d.png)
+
     - 자손 선택자 : >
       - a 요소의 “자손들” 중 b요소만 선택
       ```css
@@ -429,4 +430,215 @@
       height:200px;
   }
   ```
-    
+### 2_3. 텍스트 스타일
+- 글꼴 관련 스타일
+	- font-family : 글꼴 지정
+		```css
+		선택자{ font-family:글꼴명1, 글꼴명2, ...;}
+		```
+		- 글꼴명 나열시 글꼴명1 적용 안되면 글꼴명2 적용… 다 안되면 브라우저 기본 글꼴 적용
+		- 공백이 있는 글꼴명 반드시 (쌍)따옴표로 묶어야 함
+	- font-size : 글꼴 크기 변경
+		```css
+		선택자{ font-size:크기(px|em|%) }
+		```
+		- px : 고정크기 / em : 가변크기 (배) / % : 가변크기
+		- 가변크기 기준 : 상위 요소 글꼴 크기
+	- font-weight : 글꼴 굵기 변경
+		```css
+		선택자 { font-weight:normal|bold|bolder|lighter|100~900(100단위); }
+		```
+		- bold : 굵은 글꼴 / bolder : 원래 굵기보다 더 굵게
+		- 100 : lighter / 500 : normal / 900 : bolder
+	- font-style : 텍스트 문구 기울임
+		```css
+		선택자{ font-style:normal|italic|oblique; }
+		```
+		- italic : 기울임 글꼴 / oblique : 원래 글자를 기울임
+- 텍스트 관련 스타일
+	- color : 텍스트의 색상을 지정
+		```css
+		선택자 {
+			color: 색상명|16진수|rgb(x,x,x)|rgba(x,x,x,x)|hsl(x,x,x)|hsla(x,x,x,x);
+		}
+		```
+		=> a : 투명도
+		=> h:색상값(0~360), s:채도(%), l:명도(%)
+	- text-decoration : 텍스트에 줄을 긋거나 기존의 줄을 없앨 때 사용
+		```css
+		선택자{
+			text-decoration: none|underline|overline|line-through;
+		}
+		```
+	- text-transform : 영문 텍스트의 대소문자 변환 시 사용
+		```css
+		선택자{
+			text-transform : uppercase|lowercase|capitalize;
+		}
+		```
+		- uppercase : 모든 영문자 다 대문자로
+		- lowercase : 모든 영문자 다 소문자로
+		- capitalize : 영문자를 단어별로 첫 글자만 대문자로
+	- text-shadow : 텍스트에 그림자 효과를 줄 때 사용
+		```css
+		선택자{
+			text-shadow : 가로거리(x) 세로거리(y) [번짐정도] [색상];
+		}
+		```
+		=> 오른쪽(양수) / 왼쪽(음수) / 아래(양수) / 위(음수)
+		=> 번짐정도 생략시 선명한 그림자 / 색상 생략시 글자색과 동일
+		=> ,로 연이어서 여러개의 그림자 부여 가능
+	- text-align : 텍스트 정렬할 때 사용
+		```css
+		선택자{
+			text-align:left(기본값)|justify|right|center;
+		}
+		```
+		=> justify : 양쪽 정렬
+	- vertical-align : 세로를 기준으로 정렬할 때 사용
+		```css
+		선택자{
+			vertical-align:middle|bottom|top;
+		}
+		```
+		=> 인라인요소에서만 반영
+	- text-height : 줄 간격 조정할 때 사용
+		```css
+		선택자{
+			line-height:normal|px|em|%;
+		}
+		```
+- 목록 관련 스타일
+	- list-style-type : 불릿기호를 변경시켜줄 때 사용
+	- list-style-image : 불릿기호로 이미지를 적용시키고자 할 때 사용
+	- list-style-position : 불릿기호의 위치를 조정할 때 사용
+		- 순서 없는 목록 (ul)
+			```css
+			선택자{
+				list-style-type : disc(기본값)|circle|square|none;
+				list-style-image : url("적용시키고자 하는 이미지의 경로");
+				list-style-position : inside|outside(기본값);
+			}
+			```
+		- 순서 있는 목록 (ol)
+			```css
+			선택자{
+				list-style-type : decimal(기본값)|decimal-leading-zero;
+				list-style-type : lower-alpha|upper-alpha;
+				list-sytle-type : lower-roman|upper-roman;
+			}
+			```
+### 2_4. 배경 스타일
+- 배경 색
+	- background-color : 배경색 지정하고자 할 때 사용
+	- background-clip : 배경을 적용시키고자 하는 범위 지정할 떄 사용
+		```css
+		선택자{
+			background-clip:border-box(기본값)|padding-box|content-box;
+		}
+		```
+- 배경 이미지
+	- background-image : 배경에 이미지 설정할 때 사용
+			```css
+			선택자{
+				background-image:url('이미지 경로');
+			}
+			```
+	- background-repeat : 배경 이미지 반복 출력 설정할 때 사용
+		```css
+		선택자{
+			background-repeat:repeat|repeat-x|repeat-y|no-repeat;
+		}
+		```
+		- repeat : 요소에 가득찰 때까지 가로 / 세로 반복 (기본값)
+		- repeat-x / repeat-y : 넓이 / 높이만큼 반복
+	- background-size : 배경 이미지 크기 조절할 때 사용
+		```css
+		선택자{
+			background-size:auto|contain|cover|px px|% %;
+		}
+		```
+		- auto : 원래 배경 이미지 크기만큼 표시
+		- contain : 요소 안으로 이미지가 들어갈 수 있게 확대 / 축소
+		- cover : 요소 범위를 이미지가 덮을 수 있게 확대 / 축소
+	- background-position
+		```css
+		선택자{
+			background-position:좌/우/가운데 위/아래/가운데|px px|% %;
+		}
+		```
+	- background-attachment : 페이지가 위 아래로 움직여도 배경은 움직이지 않게 고정할 때 사용
+		```css
+		선택자{
+		 	background-attachment:scroll|fixed;
+		}
+		```
+		- scroll (기본값) : 배경 이미지가 움직이게 설정
+		- fixed : 배경 이미지가 움직이지 않게 설정
+- 변형 관련 스타일 : transform
+	- 좌우로 움직이기
+		```css
+		선택자{
+			transform:translateX(단위);
+		}
+		```
+		=> 양수 : 오른쪽 / 음수 : 왼쪽
+	- 상하로 움직이기
+		```css
+		선택자{
+			transform:translateY(단위);
+		}
+		```
+		=> 양수 : 아래 / 음수 : 위
+	- 대각선으로 움직이기
+		```css
+		선택자{
+			transform:translate(좌우, 위아래);
+		}
+		```
+	- 가로로 확대 축소
+		```css
+		선택자{
+			transform:scaleX(숫자);
+		}
+		```
+		=> 배수 입력
+		=> 음수 : 뒤집힘
+	- 세로로 확대 축소
+		```css
+		선택자{
+			transform:scaleY(숫자);
+		}
+		```
+		=> 배수 입력
+	- 전체 확대 축소
+		```css
+		선택자{
+			transform:scale(가로, 세로);
+		}
+		```
+	- 지정한 각도만큼 회전
+		```css
+		선택자{
+			transform:rotate(각도);
+		}
+		```
+		=> 단위 : deg
+	- 지정한 각도만큼 가로로 뒤틀기
+		```css
+		선택자{
+			transform:skewX(각도);
+		}
+		```
+	- 지정한 각도만큼 세로로 뒤틀기
+		```css
+		선택자{
+			transform:skewY(각도);
+		}
+		```
+	- 지정한 각도만큼 전체 뒤틀기
+		```css
+		선택자{
+			transform:skew(가로, 세로);
+		}
+		```

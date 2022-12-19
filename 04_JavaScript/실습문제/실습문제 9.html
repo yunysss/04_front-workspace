@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area{
+            border:1px solid red;
+            width:100%;
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>보기</legend>
+        <label id="labelArr">피자 치킨 당근 햄버거 떡볶이</label>
+    </fieldset>
+    <br>
+    <input type="text" id="deleteText" placeholder="삭제할 음식이름을 입력하세요">
+    <input type="text" id="inputText" placeholder="추가할 음식이름을 입력하세요">
+    <br><br>
+    <div id="area"></div>
+    <br>
+    <button onclick="deleteInput();">처리 및 출력</button>
+
+    <script>
+        function deleteInput(){
+            const arr = document.getElementById("labelArr").innerHTML.split(" ");
+            const deleteText = document.getElementById("deleteText");
+            const inputText = document.getElementById("inputText");
+            const divEl = document.getElementById("area");
+
+            arr.splice(arr.indexOf(deleteText.value), 1);
+            arr.push(inputText.value);
+
+            divEl.innerHTML = arr.join(" ");
+            
+        }
+    </script>
+</body>
+</html>

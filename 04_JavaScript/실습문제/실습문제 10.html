@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset{
+            text-align:center;
+            width:300px;
+            background:lightgray;
+        }
+        #area{
+            background:orange;
+            width:400px;
+            height:50px;
+            display:none;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>검색할 항목을 선택하세요.</legend>
+        <input type="radio" name="search" value="title" onclick="searchTest(this.value);">제목 &nbsp;&nbsp;
+        <input type="radio" name="search" value="date" onclick="searchTest(this.value);">날짜 &nbsp;&nbsp;
+        <input type="radio" name="search" value="author" onclick="searchTest(this.value);">작성자
+    </fieldset>
+    <hr>
+    <div id="area"></div>
+
+    <script>
+        const area = document.getElementById("area");
+        
+        function searchTest(val){ 
+            switch(val){
+                case "title" : title(); break; 
+                case "date" : date(); break;
+                case "author" : author(); 
+            }
+            area.style.display = "block"; 
+        }
+
+        function title(){
+            area.innerHTML = "검색할 제목을 입력하세요 : <br>";
+            area.innerHTML += "<input type='text' size='40'>&nbsp&nbsp&nbsp";
+            area.innerHTML += "<button>검색</button> </form>";
+        }
+
+        function date(){
+            area.innerHTML = "검색할 날짜를 선택하세요 : <br>";
+            area.innerHTML += "<input type='date'> - "
+            area.innerHTML += "<input type='date'>&nbsp&nbsp&nbsp";
+            area.innerHTML += "<button>검색</button>";
+        }
+
+        function author(){
+            area.innerHTML = "검색할 작성자 아이디를 입력하세요 : <br>";
+            area.innerHTML += "<input type='text'>&nbsp&nbsp&nbsp";
+            area.innerHTML += "<button>검색</button>"; 
+        }
+
+    </script>
+</body>
+</html>

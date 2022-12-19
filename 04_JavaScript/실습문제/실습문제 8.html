@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area{
+            border:1px solid red;
+            width:100%;
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>입력</legend>
+        <input type="text" id="inputText"><button onclick="inputTest();">입력</button>
+    </fieldset>
+    <br><br>
+    <div id="area"></div>
+    <br>
+    <button onclick="outputTest();">출력</button>
+
+    <script>
+        let arr = [];
+        function inputTest(){
+            arr.push(document.getElementById("inputText"));
+            document.getElementById("inputText").value = "";
+        }
+        function outputTest(){
+            document.getElementById("area").innerHTML = arr;
+        }
+    </script>
+
+
+</body>
+</html>

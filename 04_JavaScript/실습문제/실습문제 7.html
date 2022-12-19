@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area{
+            border:1px solid red;
+            width:100%;
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>보기</legend>
+        <label id="stringla1">r b</label><br>
+        <label id="stringla2">e v o l</label><br>
+    </fieldset>
+    <br><br>
+    <div id="area"></div>
+    <br>
+    <button onclick="print();">처리</button>
+
+    <script>
+        function print(){
+            const arr1 = document.getElementById("stringla1").innerHTML.split(" ").reverse();
+            const arr2 = document.getElementById("stringla2").innerText.split(" ").reverse();
+            const divEl = document.getElementById("area");
+
+            const arr = arr1.concat(arr2);
+
+            for(let i in arr){
+                divEl.innerHTML += arr[i];
+            }
+        }
+    </script>
+</body>
+</html>

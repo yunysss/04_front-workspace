@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #area{
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset id="area">
+        <legend style="color:red;">출력창</legend>
+    </fieldset>
+    <br>
+    <button onclick="inputText();">입력</button>
+    <button onclick="outputText();">출력</button>
+
+    <script>
+        const member = {};
+        function inputText(){
+            name = prompt("이름 입력 : ");
+            age = prompt("나이 입력 : ");
+            address = prompt("주소 입력 : ");
+            
+            member.name = name;
+            member.age = age;
+            member.address = address;
+        }
+
+        function outputText(){
+            if("name" in member){
+                document.getElementById("area").innerHTML += "이름 : " + member.name + "<br>";
+                document.getElementById("area").innerHTML += "나이 : " + member.age + "세<br>"
+                document.getElementById("area").innerHTML += "주소 : " + member.address;
+            } else{
+                alert("먼저 입력해주세요.");
+            }
+        }
+    </script>
+</body>
+</html>

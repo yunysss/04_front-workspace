@@ -642,3 +642,596 @@
 			transform:skew(가로, 세로);
 		}
 		```
+### 2_5. 레이아웃 스타일
+- 여백 및 간격 관련 스타일
+	![화면 캡처 2022-12-20 183758](https://user-images.githubusercontent.com/115604544/208634334-0bf8ca78-1bf5-433f-a78b-4a42f13bd877.png)
+
+	- 요소 영역 == content (내용물) + padding (여백) + border (테두리)
+	- padding : content 영역과 border 영역 사이의 거리 (여백)를 조절하는 스타일 속성
+		```css
+		선택자{
+			padding : 숫자;
+		}
+		```
+		=> 숫자 1개 제시 : 사방으로 여백 생김   
+    숫자 2개 제시 : 위아래 좌우   
+    숫자 4개 제시 : 위에서부터 시계방향   
+	- margin : 타 요소들 간의 간격을 띄워주고자 할 때 사용
+		```css
+		선택자{
+			margin : 숫자;
+		}
+		```
+		=> 타 요소의 간격과 중첩됨   
+		=> margin:auto; 화면의 가운데에 위치
+- 테두리 관련 스타일
+	```css
+	선택자{
+		* 테두리 스타일
+		border[-위치]-style : none|dotted|dashed|solid|double|groove|ridge|inset|outset;
+
+		* 테두리 두께
+		border[-위치]-width : 테두리두께;
+
+		* 테두리 색상
+		border[-위치]-color : 테두리색상;
+
+		* 한 번에 지정
+		border[-위치] : 두께 스타일 색상;
+
+		* 테두리 두께, 스타일, 색상을 한 큐에 지정
+		border[-위치] : 두께 스타일 [색상(생략시 글자색과 동일)];
+
+		* 테두리 모서리를 둥글게
+		border[-상하위치-좌우위치]-radius : 숫자;
+
+		* 박스에 그림자 효과
+		box-shadow : 가로거리(x) 세로거리(y) 흐림정도 번짐정도 색상;
+	}
+	```
+- 레이아웃 관련 스타일
+	- width / height : 기본적으로 내용을 차지하는 content 영역의 가로, 세로 길이를 조절하는 속성
+		- 고정크기 (px)
+		- 가변크기 (%)
+	- display : 화면 배치 방법
+		```css
+		선택자{
+			display:inline|block|inline-block|none;
+		}
+		```
+		- inline : block 요소를 inline 요소로 변경, width와 height 속성은 적용되지 않음
+		- inline-block : inline 레벨이면서 content에는 block에 대한 속성 지정 (margin, height, width 설정 가능)
+		- block : inline 요소를 block 요소로 변경
+		- none : 화면에 표현되지도 않고 공간도 차지하지 않음
+- 배치 관련 스타일
+	- position
+		- 상대위치 (relative)
+		- 절대위치 (absolute)
+			- 원하는 위치를 지정해 배치
+			- 부모 / 조상 요소의 position 속성이 반드시 relative
+			- 영역의 정 가운데에 배치
+				```css
+				선택자{
+					margin:auto;
+					position:absolute;
+					top:0;
+					bottom:0;
+					left:0;
+					right:0;
+				}
+				```
+		- 고정위치 (fixed) : 지정한 위치에 고정 배치
+- z-index
+	![화면 캡처 2022-12-20 183842](https://user-images.githubusercontent.com/115604544/208634500-c8589313-b162-4e91-88d5-ee8198218d32.png)
+
+	- 요소들을 순서대로 위로 쌓는 속성
+	- 부모 / 조상 요소의 position 속성이 반드시 relative
+	- 속성 값이 크면 가장 위에 있는 요소, 작으면 밑에 있는 요소
+	- 요소들이 화면으로부터 띄워져 있기 때문에 이어서 다른 요소를 넣으려면 <br>로 줄바꿈해줘야함
+- visibility : 특정 요소를 보이거나 보이지 않게 하는 스타일 속성
+	- visability:hidden은 공간은 차지하고 있지만 화면에 보이지 않음
+	- cf) display:none은 공간마저도 사라지게 함
+- float : 페이지 내의 요소들을 화면으로부터 띄워서 왼쪽 또는 오른쪽으로 배치하는 속성
+	```css
+	선택자{
+		float : right|left|none;
+	}
+	```
+- clear : float 속성 초기화
+	```css
+	<br clear="both">
+	```
+## 3. JavaScript
+### 3_1. JavaScript 개요
+- 웹 3요소
+	- HTML : 웹 문서의 큰 틀 (뼈대)
+	- CSS : 스타일 (색상, 디자인, 간격, 배치 등)
+	- JavaScript : 웹 문서상에 이벤트가 발생했을 때 실행해야하는 동적인 효과들을 처리
+- 스크립트 언어란
+	- 프로그램의 동작을 사용자의 요구에 맞게 수행되게끔 해주는 용도
+	- 매우 빠르게 배우고 짧은 소스코드로 상호작용되도록 고안됨
+- 자바스크립트
+	- 웹 브라우저에서 많이 사용되는 "인터프리터 방식"의 스크립트 언어
+	- 인터프리터 방식
+		- 코드를 한줄씩 한줄씩 읽어가면서 바로 실행하는 방식
+		- 실시간으로 텍스트 분석해서 실행됨 ⇒ 코드에 문법 오류가 있으면 그 코드가 실행되는 시점에서 알려줌
+- 장단점
+	- 장점
+		- 컴파일 과정 없이 인터프리터로 코드를 한줄씩 읽어가면서 바로 실행되기 때문에 "수행속도가 빠름”
+		- 코드 작성이 간단해서 초보자가 접하기 쉬움 (단순한 구조, 원칙)
+			ex) 접근제한자의 개념 없음, 변수 선언시 자료형 정해둘 필요 없음
+	- 단점
+			- 웹에 특화된 기술임 => 내부에서 제공되는 기능이 다소 제한적
+			- html소스코드에서 같이 작성하면 외부에 공개됨 => 보안의 취약점 발생
+- 자바스크립트 사용법
+	- inline (인라인) 방식
+		- 태그 내에 간단 소스코드를 작성하여 실행되게 하는 방법
+		```html
+		<태그 on이벤트명="해당요소에 해당이벤트 발생시 실행시킬 소스코드">
+		```
+	- internal (내부) 방식
+		- html문서 내에 script 태그를 작성하여 그 안에 소스코드를 작성하는 방법
+		- script 태그는 head태그, body태그 어디서든 작성 가능
+		```html
+		<script>실행할 소스코드 작성</script>
+		```
+	- external (외부) 방식
+		- 별도의 .js 파일로 소스코드를 작성하여 가져다가 실행되게 하는 방법
+		```html
+		<script src=“경로“ rel="javascript"></script>
+		```
+- 두 값이 동일한지 비교하는 연산자
+	- == : 동등연산자(자료형과 무관하게 실제 값만 일치해도 true)
+	- === : 일치연산자(값, 자료형 둘 다 일치해야 true)
+### 3_2. 변수와 자료명
+- 자바스크립트에서의 자료형
+	- 자바스크립트에서는 변수 선언시 따로 자료형을 지정하지 않음
+	- var, let, const를 이용해서 변수를 선언하고 아무 값이나 담을 수 있음
+	- 특정 값 대입시 그때 그 값에 맞춰서 자료형이 지정됨
+	- typeof() : 값의 자료형을 확인하는 연산자
+- 자료형의 종류
+	- string(문자열) : 홑따옴표 또는 쌍따옴표로 묶여 있는 리터럴
+	- number(숫자)
+	- boolean(논리값)
+	- object(객체) : 배열, 요소, {}, …
+		- 배열객체 : [값, 값, …]
+		- 요소
+			```jsx
+			var divEl = document.getElementById(”id명”)
+			```
+		- {}
+			```jsx
+			var user = {
+				name:"김말똥",
+				age:30,
+				id:"user01"
+			};
+			```
+			=> key-value 세트로 저장
+	- function(함수)
+		- 익명 함수 : function() ⇒ 어딘가에 대입될 때 사용
+			```jsx
+			btn.onclick = function(){ 
+				window.alert("버튼 클릭");
+			};
+			```
+			=> 이벤트 발생시 실행할 함수(이벤트 핸들러)
+		- 선언적 함수 : function 함수이름()
+	- undefined(초기화가 안된 변수)
+		```jsx
+		var noVal;
+		```
+- var, let, const의 차이점
+	- 변수 선언 방법
+		- var
+			- 중복 선언 가능
+			- 재할당 가능
+		- let
+			- 중복 선언 불가능
+			- 재할당 가능
+		- const
+			- 중복 선언 불가능
+			- 재할당 불가능
+			- 상수같은 개념
+	- 스코프 (사용가능 범위)
+		- var : function[al] scope == 변수가 선언된 “함수영역”내에서 다 사용 가능
+			```jsx
+			function diffScope(){
+				if(true){
+						var age = 20; // if 블럭안에서 선언된 변수
+				}
+				console.log(age);
+			}
+			```
+			=> 변수가 속해 있는 function 안이라면 다 사용 가능
+		- let, const : block scope == 변수가 선언된 "블럭{}"내에서만 사용 가능
+			```jsx
+			function diffScope(){
+				if(true){
+						let userId = "user01";
+						const userPwd = "pass01";
+				}
+				console.log(userId); // 불가능
+				console.log(userPwd); // 불가
+			}
+			```
+- 변수 선언 위치에 따른 전역변수 / 지역변수
+	- 전역변수
+		- 특정 함수 밖에 선언된 변수
+		- 어디서든 다 사용 가능
+		- 선언 시 변수명에 var, let, const 붙이지 않으면 특정 함수 내에 있어도 전역변수로 간주
+	- 지역변수
+		- 지역변수명과 전역변수명이 중복될 경우 => 지역변수 우선시
+		- 전역변수에 접근하고자 한다면 window. 또는 this.으로 접근
+		- let, const는 window. 또는 this.이 적용되지 않으므로 전역변수명과 지역변수명을 다르게 써야함
+### 3_3.데이터입출력
+- 자바스크립트 내장 객체
+	- window : 브라우저 창이 열릴 때마다 하나씩 만들어지는 객체   
+						브라우저 창 안에 존재하는 모든 요소들의 최상위 객체
+	- document : 웹 문서마다 하나씩 존재하는 객체
+- 데이터 출력하는 구문
+	- [window.]alert("브라우저의 알람창에 출력할 문구"); : 내용을 메시지 창에 출력
+	- [window.]console.log("브라우저의 콘솔창에 출력할 문구"); : 개발자 도구 화면의 콘솔에 출력
+	- document.write("화면상에 출력할 문구");
+		- 기존에 화면에 있던 모든 요소들(head에 작성한 내용 포함)이 지워지고 입력한 문구가 나타남
+		- 출력할 문구에 html태그가 있을 경우 해석돼서 시각적인 요소로 보여짐
+	- 선택한요소.innerHTML|innerText = "요소에 출력할 문구";
+		- 자바스크립트에서 특정 요소(element)안의 값(content)을 가지고 온다거나 변경하고자 할 때 innerHTML, innerText 속성에 접근
+		```jsx
+		console.dir(divEl);
+		```
+		=> console.dir : 요소객체의 디렉토리 구조(속성들에 대한 정보)를 볼 때
+		- innerHTML : html 태그도 같이 보관   
+		- innerText : 오로지 텍스트만 보관
+- 데이터 입력받는 구문 (변수에 기록 가능)
+	- 변수 = [window.]confirm("질문내용");
+		- confirm 호출시 "질문내용"과 "확인"/"취소"버튼이 존재하는 브라우저의 알람창 발생
+		- 확인 버튼 클릭시 true, 취소 버튼 클릭시 false를 반환
+		- boolean값이 반환되기 때문에 if문에 활용 가능
+	- 변수 = [window.]prompt("질문내용");
+		- prompt호출시 "질문내용"과 입력할 수 있는 "텍스트 상자"와 "확인"/"취소"버튼이 존재하는 브라우저의 알람창 발생
+		- 확인 버튼 클릭시 텍스트 상자에 입력되어있는 값을 문자열로 반환, 취소 버튼 클릭시 null을 반환
+	- 변수 = 선택한요소.속성(id, className, innerHTML, innerText, ..);
+	- 변수 = 선택한input요소.value;
+### 3_4. 요소 가져오기 (접근하기)
+- 아이디를 이용해서 요소 가져오기
+	- document.getElementById(”아이디명”);
+	- 선택된 요소객체 1개 반환
+	- 선택한 요소의 속성값 가져온다거나 변경 가능
+- 태그명을 이용해서 요소 가져오기
+	- document.getElementsByTagName("태그명");
+	- 선택된 요소객체들이 배열에 담겨서 반환
+	- [요소객체, 요소객체, …]
+	- 배열.length : 선택된 요소 갯
+	- 배열의 인덱스까지 접근 (배열[인덱스])해서 요소객체에서 실행
+- name속성값을 이용해서 요소 가져오기
+	- document.getElementsByName("name속성값");
+	- 선택된 요소들이 담겨있는 배열 반환
+	- [요소객체, 요소객체, …]
+- 클래스를 이용해서 요소 가져오기
+	- document.getElementsByClassName("class속성값");
+	- 선택된 요소들이 담겨있는 배열 반환
+	- [요소객체, 요소객체, …]
+- 선택자를 이용해서 요소 가져오기
+	- 내가 원하는 요소 자유롭게 선택
+	- document.querySelector("선택자"); : 선택된 요소객체 딱 하나만 반환
+	- document.querySelectorAll("선택자") : 선택된 요소객체들이 담겨있는 배열 반환
+### 3_5. 문자열과 숫자
+- 문자열 관련 기본메소드
+	- toUpperCase() : 대문자로
+	- toLowerCase() : 소문자로
+	- length : 문자열의 길이 (속성값임 ⇒ 메소드x)
+	- charAt() : 찾는 위치의 문자 리턴
+	- indexOf() : 앞에서부터 찾는 문자의 순번(위치) 리턴 / lastIndexOf() : 뒤에서부터 찾는 문자의 순번 리턴
+		- indexOf(”찾는 문자”, 숫자) : 숫자 위치에서부터 탐색
+		- 해당 문자가 존재하지 않을 경우 -1 반환
+	- substring(시작인데스) / substring(시작, 끝) : 값을 일부분만 리턴 (끝 인덱스 이전까지)
+	- split() : 토큰 문자로 분리한 문자열 배열 리턴
+- 문자열 관련 html메소드
+	- bold() : b태그
+	- italics() : i태그
+	- small() : small태그
+	- sub() : sub태그
+	- sup() : sup태그
+	- link(”url”) : \<a href=”url”>
+- 수학 (숫자) 관련 메소드
+	- Math.abs() : 절대값 리턴
+	- Math.random() : 임의의 난수발생 리턴(소수점)
+	- Math.round() : 반올림처리 후 리턴, 위치 지정 불가
+	- Math.floor() : 버림처리 후 리턴, 위치 지정 불가
+	- Math.ceil() : 버림처리 후 리턴, 위치 지정 불가
+- 문자열과 숫자간의 산술연산 / 형변환
+	- 덧셈을 제외한 산술연산시 문자열이 숫자로 자동형변환 된 뒤에 산술연산됨. 단, 문자열에는 숫자만 존재해야함
+	- 숫자와 문자를 덧셈 연산하게 되면 문자가 우선되어 숫자를 문자로 변환
+	- 강제형변환 (문자열 => 숫자형) : input요소의 value 값은 무조건 string타입 (문자열)이므로 숫자 연산 시 강제 형변환 필
+		- Number(문자열)
+		- parseInt(문자열)  : 정수로 변환
+		- parseFloat(문자열)
+### 3_6. 배열
+- 배열
+	- 변수 선언시 별도의 자료형 지정 x
+	- 모든 자료형(숫자, 문자열, 함수, boolean, undefined, 객체)을 하나의 배열 공간에 담을 수 있음
+	- 크기 제약 없음
+- for in문
+	- 배열의 0번 인덱스부터 마지막 인덱스까지 순차적으로 모든 요소에 접근
+	- for(let 변수 in 순차적으로접근할배열)
+	```jsx
+	for(let i in arr){ 
+		area1.innerHTML += arr[i] + "<br>";
+	}
+	```
+	=> i : 인덱스수가 순차적으로 담김
+- 배열의 선언
+	- 크기를 정하지 않은 배열 선언 : const 변수명 = new Array();
+	- 크기를 정한 배열 선언 : const 변수명 = new Array(개수);
+	- const 변수명 = [];
+- 배열의 초기화
+	- new 연산자 활용 : const 변수명 = new Array(값1, 값2, …);
+	- [ ] 활용 : const 변수명 = [값1, 값2, …];
+- 배열에 값 대입
+	- 배열[인덱스수] = 값;
+	- 인덱스 중간을 건너뛰고 값 대입 가능 : 건너뛴 인덱스는 empty
+- 배열 관련 메소드
+	- 배열.indexOf(찾고자하는요소)
+		- 배열에서 해당 요소가 위치해있는 인덱스 반환
+		- 해당 요소를 찾지 못하면 -1 반환
+	- 배열.concat(배열, 배열, ...)
+		- 배열에 여러개의 배열을 결합하고자 할 때 사용
+		- 원본 배열에 영향을 끼치지 않는 메소드
+	- 배열.reverse()
+		- 배열에 담긴 값들을 역순으로 바꿔주는 메소드
+		- 원본 배열에 영향을 끼치는 메소드
+	- 배열.sort()
+		- 배열 안에 담긴 값들을 정렬시켜주는 메소드 (오름차순)
+		- 원본 배열에 영향을 끼치는 메소드
+		- 내림차순 정렬 : 오름차순 정렬 후 역순으로 뒤집기
+			```jsx
+			배열.sort().reverse();
+			```
+		- 숫자의 경우 숫자 크기대로 정렬하는 것이 아니라 문자열로 바꿔서 정렬하기 때문에 제대로 안됨
+			- sort메소드 내의 function에서 양수값 리턴시 두개의 순서가 바뀜
+				- 오름차순 : 뒤의 값보다 앞의 값이 클 경우 순서 바꿔야함
+						```jsx
+						divEl.innerHTML += "오름차순 : " + arr2.sort(function(left, right){
+																														return left - right;
+																												})";
+						```
+				- 내림차순 : 앞의 값보다 뒤의 값이 클 경우 순서 바꿔야함
+						```jsx
+						divEl.innerHTML += "내림차순 : " + arr2.sort(function(left, right){
+																														return right - left;
+																												});
+						```
+	- 배열.push(추가할요소) / 배열.pop()
+		- 배열.push(추가할요소) : 배열의 맨 뒤에 요소 추가시키고 배열의 크기 반환
+		- 배열.pop() : 배열의 맨 뒤 요소 제거시키고 제거된 요소 반환
+		- 원본배열에 영향을 끼치는 메소드
+	- 배열.unshift(추가할요소) / 배열.shift()
+		- 배열.unshift(추가할요소) : 배열의 맨 앞에 요소 추가 후 배열의 크기 반환
+		- 배열.shift() : 배열의 맨 앞 요소 제거시키고 제거된 요소 반환
+		- 원본 배열에 영향을 끼치는 메소드
+	- 배열.slice(시작인덱스, 끝인덱스) / 배열.splice(시작인덱스, 제거수[, 추가할 값])
+		- 배열.slice(시작인덱스, 끝인덱스) : 배열로부터 시작인덱스에서부터 끝인덱스까지 추출해주는 메소드
+			- 원본 배열에 영향을 끼치지 않는 메소드
+		- 배열.splice(시작인덱스, 제거수[, 추가할 값]) : 배열의 요소 추출해서 제거 및 추가
+			- 원본 배열에 영향을 끼치는 메소드
+	- 배열.toString() / 배열.join([구분자])
+		- 배열의 각 인덱스에 담긴 값들을 하나의 "문자열"로 합쳐서 반환
+		- 객체를 화면에 출력하면 내부적으로 객체.toString() 호출한 결과가 출력
+		- 요소객체는 toString() 정의되어있지 않아 type반환
+### 3_7. 함수
+- 선언적 함수
+	```jsx
+	function 함수명([매개변수, 매개변수, ..]){
+		해당 함수 호출시 실행할 소스코드;
+
+		[return 결과값;]
+	}
+	```
+- 익명 함수
+	- 특정 변수나 속성에 대입되는 함수 제시시 주로 사용 (주로 이벤트 핸들러 작성시 사용)
+	- 이벤트 핸들러 : 이벤트속성에 대입되는 function ex) 요소.onclick, window.onload (페이지 로딩 직후 실행)
+	```jsx
+	변수|속성 = function([매개변수, ..]){
+		해당 함수 호출시 실행할 소스코드;
+
+		[return 결과값;]
+	};
+	```
+- 함수의 매개변수
+	- 정의해둔 매개변수 갯수보다 더 많이 전달 가능 (오류 안남). 단, 초과된 전달값은 무시됨
+	- 정의해둔 매개변수 갯수보다 더 적게 전달 가능 (오류안남) => undefined
+	- 매개변수 제시시 자료형 지정x, 선언구문x => 변수명만
+- 매개변수 관련 arguments배열
+	- 함수 호출시 전달되는 값들은 내부적으로 arguments배열에 담김
+	- arguments : 모든 함수마다 내부적으로 하나씩 존재하는 배열 객체
+- 매개변수에 this관련 전달하기
+	- this : 현재 (이벤트가 발생한) 요소객체
+	- this.속성명 : 속성 전달 가능
+- 함수의 리턴
+	- 일반적인 값 리턴
+		```jsx
+		function ran(){
+			return parseInt(Math.random() * 100 + 1);
+		}
+		```
+	- 익명함수 리턴
+		```html
+		이름 : <input type="text" id="userName">
+		<button onclick="test7()();">실행확인</button>
+		```
+		=> test7()자리로 익명함수 리턴되므로 () 한번 더 써야 실행됨
+		```jsx
+		function test7(){
+			const inputEl = document.getElementById("userName");
+			return function(){
+				alert(inputEl.value);
+			};
+		}
+		```
+- 스스로 동작 함수
+	- 호출 없이 바로 실행
+	```jsx
+	(function(){
+		처리 로직
+	})();
+	```
+### 3_8. 객체
+- 객체 선언 및 사용
+	```jsx
+	변수 = {
+		속성명:속성값,
+		속성명:속성값,
+		...
+	};
+	```
+	- 중괄호{}를 사용해서 생성
+	- 중괄호 안에 이 객체에 필요한 속성(property)들 정의
+	- 속성명:속성값 의 형태로 정의 (키:밸류)
+	- 속성값으로 모든 자료형의 값을 담을 수 있음
+	- 자바스크립트에서의 배열 == 자바에서의 컬렉션(ArrayList)   
+		자바스크립트에서의 객체 == 자바에서의 컬렉션(HashMap)
+	- 속성명에 공백이나 특수문자가 포함될 경우
+		- 반드시 문자열로 묶어야함
+		- 접근 시 []을 이용한 방법만 가능
+	- toString() 따로 정의하지 않으면 화면에 출력시 자료형 출력됨
+- 객체의 속성에 접근하는 방법
+	- 대괄호를 이용하는 방법 : 객체명["속성명"]
+		- 유의할점 : 속성명 반드시 문자열 형태로 제시 (따옴표)
+		- 속성명 오타 있을 시 undefined
+	- .을 이용하는 방법 : 객체명.속성명
+- 객체에서의 반복문
+	- 객체가 가지고 있는 모든 속성들에 순차적으로 접근하고자 한다면 반복문 제시
+	- for in문만 사용 가능
+	- 접근 시 []을 이용한 방법만 가능
+	```jsx
+	for(let key in game){
+		divEl.innerHTML += key + " : " + game[key] + "<br>";
+	}
+	```
+	=> 반복문 돌 때마다 변수에 해당 객체의 순차적으로 접근되는 “속성명”이 차례대로 대입됨 (문자열 형태로)
+- 객체의 메소드 속성
+	- 객체의 속성 중 함수 자료형인 속성 == 메소드
+	- 메소드 내에서 같은 객체 내의 속성에 접근하고자 한다면 this. 붙여야함
+  - 객체명.메소드속성명();으로 호출
+- in / with
+	- in : 객체 내의 해당 속성이 있는지 확인해주는 연산자 (존재하면 true, 아니면 false)
+		```jsx
+		"속성명" in 객체명;
+		```
+	- with : 객체의 속성 접근시 객체명 제시하는걸 생략할 수 있음 (코드를 줄여주는 존재)
+		```jsx
+		with(객체명){
+			속성명;
+		}
+		```
+		=> 객체명. 제시할 필요 없음
+- 객체의 속성 추가 및 제거
+	- 객체에 속성 추가
+		```jsx
+		객체명.속성명 = "값";
+		객체명.속성명 = function(){
+				메소드 로직;
+				[return 값;]
+		};
+		```
+		=> 해당 속성명이 없으면 생성해주고 있으면 중복 불가하기 때문에 덮어씌워줌
+	- 객체의 속성 제거
+		```jsx
+		delete(객체명.속성명);
+		```
+- 객체 배열
+	- 다량의 데이터 관리
+	```jsx
+	function test1(){
+		const student0 = {name:"김말똥", java:100, oracle:90, html:90, css:60};
+		const student1 = {name:"홍길동", java:60, oracle:100, html:80, css:70};
+		const student2 = {name:"강개순", java:70, oracle:80, html:100, css:50};
+		const student3 = {name:"김개똥", java:100, oracle:60, html:80, css:50};
+
+		const students = [];
+
+		students.push(student0);
+		students.push(student1);
+		students.push(student2);
+		students.push(student3);
+
+		console.log(students);
+		console.log(students[0]);
+		console.log(students[0].name);
+
+		for(let i in students){
+			students[i].javascript = 100;
+			students[i].getSum = function(){
+				return this.java + this.oracle + this.html + this.css + this.javascript;
+			};
+			students[i].getAvg = function(){
+				return this.getSum() / 5;
+			}
+		}
+
+		const divEl = document.getElementById("area1");
+
+		for(let i in students){
+			divEl.innerHTML += "이름 : " + students[i].name  
+											+ ", 총점 : " + students[i].getSum()
+										  + ", 평균 : " + students[i].getAvg() + "<br>"; 
+		}
+	}
+	```
+- 생성자 함수
+	- new 키워드를 이용해서 객체를 생성할 수 있는 함수 (함수명 제시시 첫글자를 대문자로)
+	```jsx
+	function Student(name, java, oracle, html, css, javascript){
+		// 일반속성 정의
+		this.name = name;
+		this.java = java;
+		this.oracle = oracle;
+		this.html = html;
+		this.css = css;
+		this.javascript = javascript;
+
+		// 메소드속성 정의
+		this.getSum = function(){
+			return this.java + this.oracle + this.html + this.css + this.javascript;
+		}
+
+		this.getAvg = function(){
+			return this.getSum() / 5;
+		}
+	}
+	```
+	```jsx
+	function test2(){
+		const student0 = {name:"강개순", java:100, oracle:60, html:80, css:50, javascript:100};
+		const student1 = new Student("홍길동", 100, 70, 60, 80, 90);
+		const student2 = new Student("김말똥", 80, 90, 100, 50, 70);
+
+		const students = [student0, student1, student2];
+
+		console.log(students);
+
+		for(let i in students){
+			document.getElementById("area2").innerHTML += "이름 : " + students[i].name + "<br>";
+		}
+	}
+	```
+- Date 내장객체
+	- 변수 = new Date(); : 현재 날짜 시간
+	- 변수 = new Date(년, 월-1, 일);
+	- 변수 = new Date(년, 월-1, 일, 시, 분, 초, ms)
+		- ms (밀리세컨초) : 1s == 1000ms
+	- 메소드
+		- getFullYear() : 년도
+		- getMonth() : 월 인덱스 (0 : 1월 ~ 11 : 12월)
+		- getDate() : 일
+		- getDay() : 요일 (0 : 일요일 ~ 6 : 토요일)
+		- getHours() : 시간 (0 ~ 23시)
+		- getMinutes() : 분 (0 ~ 59 분)
+		- getSeconds() : 초
+	- 날짜 - 날짜 ⇒ 두 날짜 사이의 밀리세컨초 반환
+		- 1s == 1000ms   
+			1m == 60s == 60*1000ms   
+			1h == 60m == 60*60s == 60*60*1000ms   
+			1d == 24h == 24*60m == 24*60*60s == 24*60*60*1000ms
+		- 일로 환산 ⇒ (날짜 - 날짜) / (24*60*60*1000)

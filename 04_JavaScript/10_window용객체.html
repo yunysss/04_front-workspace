@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .area{
+            border:1px solid black;
+            width:300px;
+            height:100px;
+            background:lightgray;
+            color:red;
+            font-size:48px;
+        }
+    </style>
 </head>
 <body>
     <h1>Window 객체</h1>
@@ -55,5 +65,195 @@
             
         }
     </script>
+
+    <br>
+
+    <h3>window 객체의 timer관련 메소드</h3>
+    <h4>- [window.]setTimeout(함수, 일정시간ms);</h4>
+
+    <button onclick="test2();">실행확인</button>
+
+    <script>
+        function test2(){
+            const newWindow = window.open(); // 새로 열린 창의 window객체 반환
+
+            newWindow.alert("3초 후에 이 페이지는 종료됩니다!");
+
+            setTimeout(function(){
+                newWindow.close();
+            }, 3000);
+            // setTimeout : 내가 제시한 일정 시간 후에 해당 함수 "단 한번"만 실행 (일회성)
+        }
+    </script>
+
+    <br>
+
+    <h4>- [window.]setInterval(함수, 일정시간ms);</h4>
+    <button onclick="test3();">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function test3(){
+            const divEl = document.getElementById("area1");
+
+            // let count = 1;
+            setInterval(function(){
+                // divEl.innerHTML = count++;
+
+                const today = new Date();
+
+                let hour = today.getHours();
+                let min = today.getMinutes();
+                let sec = today.getSeconds();
+
+                if(hour < 10){
+                    hour = "0" + hour;
+                }
+
+                if(min < 10){
+                    min = "0" + min;
+                }
+
+                if(sec < 10){
+                    sec = "0" + sec;
+                }
+
+                divEl.innerHTML = hour + " : " + min + " : " + sec;
+            }, 1000);
+            // setInterval : 내가 지정한 일정 시간마다 "매번" 함수 실행
+        }
+    </script>
+
+    <hr>
+
+    <h1>* BOM(Browser Object Model)</h1>
+
+    <h3>location객체</h3>
+    <p>브라우저 주소창과 관련된 객체</p>
+
+    <button onclick="console.log(location);">실행확인</button>
+    <br><br>
+
+    <!-- a 태그는 애초에 클릭시 요청할 url을 작성해둘 수 있는 href속성을 제공 -->
+    <a href="http://www.naver.com">네이버로 이동</a>
+    <br>
+
+    <button onclick="location.href = 'http://www.naver.com';">네이버로 이동</button>
+    <br>
+
+    <div onclick="location.href='http://www.naver.com';">네이버로 이동</div>
+    <br><br>
+
+    <button onclick="location.assign('http://www.google.com');">구글로 이동</button>
+    <br>
+
+    <button onclick="location.replace('http://www.google.com');">구글로 이동</button>
+    <!-- replace는 뒤로가기 사용 불가 -->
+
+    <br><br>
+
+    <button onclick="location.href = location.href;">새로고침</button> <br>
+    <button onclick="location.reload();">새로고침</button>
+    <!-- reload는 현재 위치에서 새로고침 -->
+
+    <br><br>
+
+    <h3>screen객체</h3>
+    <button onclick="console.log(screen);">screen객체확인</button>
+
+    <h3>navigator객체</h3>
+    <button onclick="console.log(navigator);">navigator객체확인</button>
+
+    <h3>history객체</h3>
+    <button onclick="console.log(history);">history객체확인</button>
+
+    <hr>
+
+    <h1>* DOM(Document Object Model)</h1>
+
+    <!-- 
+        document
+            ㄴ<html></html>
+                ㄴ<head></head>
+                    ㄴ<title>제목</title>
+                    ㄴ<meta>
+                ㄴ<body></body>
+                    ㄴ<div></div>
+                    ㄴ<h4>xxxxxxx</h4>
+                    ㄴ<div></div>
+                        ㄴ<img>
+                        ㄴ<ul></ul>
+                            ㄴ<li></li>
+                            ㄴ<li></li>
+     -->
+     <p>
+        HTML 문서를 구조화해보면 각각의 요소들을 노드(Node)라고 함 <br>
+        > 요소노드 (Element Node) : 태그 그 자체만을 의미 <br>
+        > 텍스트노드 (Text Node) : 태그 내에 기록되는 내용 <br><br>
+
+        텍스트노드가 존재하는 요소 (시작태그와 종료태그가 쌍으로 이뤄져있는 요소) : h1, li, p, a, ... <br>
+        텍스트노드가 존재하지 않는 요소 (시작태그로만 이뤄져있는 요소) : input, img, ...
+     </p>
+
+     <h3>* 노드 생성과 관련된 메소드</h3>
+     <h4>- 텍스트노드 존재하는 노드 생성 (시작태그 + 종료태그)</h4>
+     
+     <button onclick="test4();">노드생성</button>
+     <div id="area2"></div>
+
+     <script>
+        function test4(){
+            // <h3>안녕하세요</h3>
+
+            // 동적으로 요소 만드는 방법1. "문자열"로 만드는 방법
+            // document.getElementById("area2").innerHTML = "<h3>안녕하세요</h3>";
+
+            // 동적으로 요소 만드는 방법2. "요소객체"로 만드는 방법
+            // ElementNode 객체 생성 : document.createElement("태그");
+            let elementNode = document.createElement("h3"); // <h3></h3>
+            // TextNode 객체 생성 : document.createTextNode("문구");
+            let textNode = document.createTextNode("안녕하세요"); // 안녕하세요
+
+            // 두 개의 노드 결합 (요소노드 하위로 텍스트노드 추가)
+            elementNode.appendChild(textNode); // <h3>안녕하세요</h3>
+
+            console.log(elementNode);
+
+            // document.getElementById("area2").innerHTML = elementNode;
+            document.getElementById("area2").appendChild(elementNode);
+        }
+     </script>
+
+     <br>
+
+     <h4>- 텍스트노드가 존재하지 않는 노드 생성 (시작태그만 존재)</h4>
+     <button onclick="test5();">노드생성</button>
+     <div id="area3"></div>
+
+     <script>
+        function test5(){
+            // <img src="" width="" height="">
+            let imgEl = document.createElement("img"); // <img>
+
+            // 속성추가
+            imgEl.src = "https://gdu.co.kr/images/main/logo.png";
+            imgEl.width = "100";
+            imgEl.height = "30";
+
+            console.log(imgEl);
+
+            document.getElementById("area3").appendChild(imgEl); // 연이어짐
+        }
+     </script>
+
+     <h3>* 노드(요소) 삭제와 관련된 메소드</h3>
+     <button onclick="test6();">요소삭제</button>
+
+     <script>
+        function test6(){
+            // 지우고자하는요소객체.remove();
+            document.getElementById("area3").firstChild.remove();
+        }
+     </script>
 </body>
 </html>

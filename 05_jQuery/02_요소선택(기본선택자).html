@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <h3>* 아이디 선택자</h3>
+    <p>특정 고유한 아이디값을 가진 요소 "하나만"을 선택하고자 할 때</p>
+
+    <h1 id="id1">테스트1</h1> <!-- 순수자바스크립트방식 -->
+    <h2 id="id2">테스트2</h2> <!-- 제이쿼리방식 -->
+
+    <script>
+        $(document).ready(function(){
+            // 순수 자바스크립트 방식 => document.getElementById("아이디명")
+            // 선택된 요소객체에 속성에 직접 접근해서 값 변경 (대입을 통해)
+            document.getElementById("id1").style.color = "red";
+            document.getElementById("id1").innerHTML = "h1변경";
+
+            // jQuery 방식 => $("#아이디명")
+            // 선택된 요소객체가 1개이든 여러개이든 배열에 담음
+            // 선택된 요소객체에 메소드를 통해 값 변경 (속성에 직접 접근 불가)
+            $("#id2").css("color", "yellow");
+            $("#id2").html("h2변경");
+            // .html() : 선택된 요소객체의 innerHTML과 관련된 기능 수행하는 메소드
+
+            console.log(document.getElementById("id1"));
+            console.log($("#id2"));
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 태그 선택자</h3>
+
+    <p>Java</p>
+    <p>Oracle</p>
+    <p>HTML</p>
+
+    <h5>CSS</h5>
+    <h5>JavaScript</h5>
+    <h5>jQuery</h5>
+
+    <script>
+        $(document).ready(function(){
+            // 순수자바스크립트 방식 => document.getElementsByTagName("태그명") : 배열
+            const p = document.getElementsByTagName("p"); // [p, p, p, p..]
+            for(let i=0; i<p.length; i++){
+                p[i].style.color = "pink";
+            }
+
+            // jQuery 방식 => $("태그명")
+            $("h5").css("color", "blue"); // 반복문 제시 필요없이 일괄적으로 적용
+
+            // 여러 종류의 요소들 선택
+            $("p, h5, #id1").css("backgroundColor", "yellow");
+        })
+    </script>
+
+    <hr>
+
+    <h3>* 클래스 선택자</h3>
+    <p>특정한 클래스 속성의 요소들 선택하고자 할 때 사용</p>
+
+    <h1 class="item">Class1</h1>
+    <h1 class="item select">Class2</h1>
+    <h1 class="item select">Class3</h1>
+
+    <script>
+        $(document).ready(function(){
+            // 순수 자바스크립트 방식 => document.getElementsByClassName("클래스명") : 배열
+            const items = document.getElementsByClassName("item"); // [h1, h1, h1]
+            for(let i=0; i<items.length; i++){
+                items[i].style.color = "orange";
+                items[i].onclick = function(){
+                    console.log("클릭됨");
+                }
+            }
+
+            // jQuery 방식 => $(".클래스명")
+            $(".select").css("backgroundColor", "pink");
+            $(".select").click(function(){
+                alert("클릭됨");
+            });
+            // .click() : 클릭이벤트와 관련된 기능 수행하는 메소드
+        })
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자바스크립트 실습문제</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -17,15 +18,14 @@
     <div id="test1"></div>
     <script>
         function test1(){
-            let inputData = prompt("메세지를 입력하세요"); // 아무것도 입력하지 않고 확인지 빈문자열, 취소버튼클릭시 null
+            let inputData = prompt("메세지를 입력하세요"); 
 
-            //if(inputData == "" || inputData == null){
-            if(!inputData){ // 자바스크립트에서는 조건식에 변수를 쓰면 해당 값이 빈문자열이거나 null이 아닐 경우 (즉, 값이 있을 경우) true를 반환해줌
-                            // 따라서 해당 값이 있는지에 대한 조건검사시 변수만 작성할 때도 많다. 
+            if(!inputData){ 
                 inputData = "메세지가 입력되지 않았습니다."
             }           
 
-            document.getElementById("test1").innerHTML = inputData;
+            //document.getElementById("test1").innerHTML = inputData;
+            $("#test1").html(inputData);
         }
     </script>
 
@@ -40,19 +40,10 @@
     <div id="test2"></div>
     <script>
         function test2(){
-            /*
-            let msg = "";
-            if(confirm("개인정보활용에 동의하시겠습니까?")){
-                msg = "당신의 개인정보가 유출되었습니다";
-            }else{
-                msg = "당신의 개인정보 유출을 막았습니다";
-            }
-            */
-
-            // 삼항연산자 이용하기 
             let msg = confirm("개인정보활용에 동의하시겠습니까?") ? "당신의 개인정보가 유출되었습니다" : "당신의 개인정보 유출을 막았습니다";
             
-            document.getElementById("test2").innerHTML = msg;
+            //document.getElementById("test2").innerHTML = msg;
+            $("#test2").html(msg);
         }
     </script>
 
@@ -78,14 +69,13 @@
             });
 
             /*
-            for(let i=0; i<numbers.length; i++){
-                document.querySelector("div#test3>ul").innerHTML += "<li>" + numbers[i] + "</li>";
-            }
-            */
-            
-            // 반복문 대신에 배열의 각 인덱스의 값에 순차적으로 접근해주는 forEach 함수같은걸 쓸 수도 있음! 
-            numbers.forEach(function(item){ // 매개변수를 써두면 매번 각인덱스에 순차적으로 접근된 값이 담김! 
+            numbers.forEach(function(item){ 
                 document.querySelector("div#test3>ul").innerHTML += "<li>" + item + "</li>";
+            })
+            */
+
+            $(numbers).each(function(index, item){
+                $("div#test3>ul").html($("div#test3>ul").html() + "<li>" + item + "</li>");
             })
 
         }
@@ -102,18 +92,19 @@
     <div class="img-container"></div>
     <script>
         function test4(){
-            /* ---- 동적인 요소를 문자열로 만드는 방법 -----
-            const srcValue = document.getElementsByName("img")[0].value;
-            document.getElementsByClassName("img-container")[0].innerHTML = "<img src='" + srcValue + "' width='200' height='200'>";
-            */
 
-            // ----- 동적인 요소를 dom요소객체로 만드는 방법 -----
+            /*
             const imgEl = document.createElement("img");
             imgEl.src = document.getElementsByName("img")[0].value;
             imgEl.width = "200";
             imgEl.height = "200";
+            */
 
-            document.getElementsByClassName("img-container")[0].appendChild(imgEl);
+            const $imgEl = $("<img>");
+            $imgEl.attr({src:$("input[name=img]").val(), width:"200", height:"200"});
+
+            //document.getElementsByClassName("img-container")[0].appendChild(imgEl);
+            $(".img-container").eq(0).append($imgEl);
         }
     </script>
 
@@ -136,8 +127,10 @@
     <div id="checkStr"></div>
     <script>
         function test5(){
+            /*
             const data = document.querySelectorAll(".data-container>*");
             const containerDiv = document.getElementById("checkStr");
+            
             for(let i=0; i<data.length; i++){
                 if(data[i].innerHTML.length >= 3){
                     //containerDiv.innerHTML += data[i].innerHTML + " "; // 단순히 3글자 이상인 문자열만 출력하기
@@ -152,6 +145,22 @@
                     containerDiv.appendChild(copy);
                 }
             }
+            */
+
+            $(".data-container>*").each(function(){
+                if($(this).html().length >= 3){
+
+                    //$("#checkStr").html($("#checkStr").html() + $(this).html() + " ");
+
+                    //$("#checkStr").append($(this));
+
+                    let copy = $(this).clone();
+                    $("#checkStr").append(copy);
+
+                }
+            })
+
+
         }
     </script>
 
@@ -178,24 +187,18 @@
     <script>
         function test6(){
 
+            /*
             const su1 = Number(document.getElementById("su1").value);
             const su2 = Number(document.getElementById("su2").value);
             const op = document.getElementById("op").value;
             
-            /*
-            let result = 0;
-            switch(op){
-                case "+": result = su1+su2; break;
-                case "-": result = su1-su2; break;
-                case "*": result = su1*su2; break;
-                case "/": result = su1/su2; break;
-            }
+            let result = eval(su1 + op + su2);
             */
-           let result = eval(su1 + op + su2);
-           // eval 함수는 문자열을 자바스크립트 코드로 변환해서 실행시켜주는 함수이다! 
-           // 즉, 예를들면 eval("2*3") 이렇게 된다면 실제로 2*3이 연산되서 실행된다는 말씀!
 
-            document.getElementById("calc-result").innerHTML = result;
+            let result = eval($("#su1").val() + $("#op").val() + $("#su2").val());
+
+            //document.getElementById("calc-result").innerHTML = result;
+            $("#calc-result").html(result);
         }
     </script>
 
@@ -209,10 +212,18 @@
         <img src="" width="100" height="100" id="img">
     </div>
     <script>
+        /*
         document.getElementById("img").onclick = function(){
             this.height += 10;
             this.width += 10;
         }
+        */
+
+        $(function(){
+            $("#img").click(function(){
+                $(this).css({width:parseInt($(this).css("width"))+10, height:parseInt($(this).css("height"))+10});
+            })
+        })
     </script>
 
     <hr>
@@ -226,9 +237,11 @@
     <script>
         let count = 0;
         function test8(){
-            const inputEl = "<input type='text'>";
+            //const inputEl = "<input type='text'>";
+            const $inputEl = $("<input>").attr("type", "text");
             if(count < 10){
-                document.querySelector("div.input-container").innerHTML += inputEl + "<br>";
+                //document.querySelector("div.input-container").innerHTML += inputEl + "<br>";
+                $("div.input-container").append($inputEl, "<br>");
                 count++;
             }else{
                 alert("10개까지만 추가 가능합니다.");
@@ -259,9 +272,11 @@
                 birthDay:new Date(2000, 8, 18)
             };
 
-            const ulEl = document.querySelector("div.list-data>ul");
+            //const ulEl = document.querySelector("div.list-data>ul");
             for(let key in data){
-                ulEl.innerHTML += "<li>" + key + " : " + data[key] + "</li>";
+                //ulEl.innerHTML += "<li>" + key + " : " + data[key] + "</li>";
+                let $liEl = $("<li></li>").text(key + " : " + data[key]);
+                $("div.list-data").append($liEl);
             }
         }
     </script>
@@ -296,6 +311,7 @@
 
         function test10(){
             
+            /*
             const divEl = document.getElementById("data-table");
 
             let tableEl = document.createElement("table");
@@ -313,6 +329,20 @@
             });
 
             divEl.appendChild(tableEl);
+            */
+
+            let $tableEl = $("<table></table>").attr("border", "1");
+            
+            $(boardList).each(function(index, boardObj){
+                let $trEl = $("<tr></tr>");
+                for(let key in boardObj){
+                    let $tdEl = $("<td></td>").text(boardObj[key]);
+                    $trEl.append($tdEl);
+                }
+                $tableEl.append($trEl);
+            })
+
+            $("#data-table").append($tableEl);
 
         }
     </script>
@@ -333,11 +363,19 @@
 
     <script>
         function test11(){
+            
+            /*
             let boardNo = Number(document.getElementById("boardNo").value);
             let boardTitle = document.getElementById("boardTitle").value;
             let boardWriter = document.getElementById("boardWriter").value;
             let boardDateArr = document.getElementById("boardDate").value.split("-");
             let boardDate = new Date(boardDateArr[0], boardDateArr[1]-1, boardDateArr[2]);
+            */
+            let boardNo = Number($("#boardNo").val());
+            let boardTitle = $("#boardTitle").val();
+            let boardWriter = $("#boardWriter").val();
+            let boardDateArr = $("#boardDate").val().split("-");
+            let boardDate = new Date(boardDateArr[0], boardDateArr[1] - 1, boardDateArr[2]);
 
             let boardObj = new Board(boardNo, boardTitle, boardWriter, boardDate);
 
@@ -345,6 +383,7 @@
 
             console.log(boardList);
 
+            /*
             const tableEl = document.querySelector("div#data-table>table");
 
             let trEl = document.createElement("tr");
@@ -355,6 +394,14 @@
             }
 
             tableEl.appendChild(trEl);
+            */
+
+            let $trEl = $("<tr></tr>");
+            for(let key in boardObj){
+                let $tdEl = $("<td></td>").text(boardObj[key]);
+                $trEl.append($tdEl);
+            }
+            $("div#data-table>table").append($trEl);
 
         }
     </script>
@@ -369,8 +416,9 @@
     <div id="text-container"></div>
     <script>
         function test12(){
-            const inputEl = window.event.target;
-            document.getElementById("text-container").innerHTML = "글자 : " + inputEl.value + "<br>글자수 : " + inputEl.value.length;
+            //const inputEl = window.event.target;
+            //document.getElementById("text-container").innerHTML = "글자 : " + inputEl.value + "<br>글자수 : " + inputEl.value.length;
+            $("#text-container").html("글자 : " + $(window.event.target).val() + "<br>글자수 : " + window.event.target.value.length);
         }
     </script>
 
@@ -390,6 +438,7 @@
     <script>
         function test13(){
 
+            /*
             const spanEl = document.getElementById("pwd-result");
 
             const pwdEl = document.getElementById("input-pwd");
@@ -401,6 +450,12 @@
             }else{
                 spanEl.innerHTML = "일치하지 않습니다.";
                 spanEl.style.color = "red";
+            }
+            */
+            if($("#input-pwd").val() == $("#input-pwdck").val()){
+                $("#pwd-result").css("color", "green").html("일치합니다.");
+            }else{
+                $("#pwd-result").css("color", "red").html("일치하지 않습니다.");
             }
         }
     </script>

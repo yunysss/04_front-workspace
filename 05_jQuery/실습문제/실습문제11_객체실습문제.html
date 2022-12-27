@@ -8,7 +8,7 @@
         height: 100px;
     }
 </style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>객체 실습 문제</h1>
@@ -67,7 +67,8 @@
                 }
 
                 if(flag){
-                    document.getElementById("print").innerHTML = member;
+                    //document.getElementById("print").innerHTML = member;
+                    $("#print").html(member.toString());
                 }else{
                     alert('값이 누락되었습니다!!');
                 }

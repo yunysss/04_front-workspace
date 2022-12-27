@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>배열 실습 문제3</h1>
@@ -25,14 +26,21 @@
 		const data = new Array(); // 전역변수로 빈 배열 선언해두고
     	
     	function input(){
+			/*
         	const strInput = document.getElementById("strInput");
         	data.push(strInput.value);
         	strInput.value="";
+			*/
+			data.push($("#strInput").val());
+			$("#strInput").val("");
     	}   
     	
     	function printTest(){
+			/*
         	const print2 = document.getElementById("print2");
         	print2.innerHTML = data.join();
+			*/
+			$("#print2").html(data.join());
     	}
     </script>   
 	

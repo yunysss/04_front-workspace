@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>배열 실습 문제4</h1>
@@ -27,8 +28,7 @@
 	<script>
 		function print2Test(){
 
-			//const str = document.getElementById("stringla4").innerHTML;
-			//const arr = str.split(' '); 
+			/*
 			const arr = document.getElementById("stringla4").innerHTML.split(' ');
 			
 			const remove = document.getElementById("remove").value;
@@ -43,6 +43,19 @@
 			arr.push(add);
 	
 			document.getElementById("print4").innerHTML = arr.join(' ');
+			*/
+
+			const arr = $("#stringla4").html().split(" ");
+
+			for(let i=0; i<arr.length; i++){
+				if(arr[i] == $("#remove").val()){
+					arr.splice(i, 1);
+				}
+			}
+
+			arr.push($("#add").val());
+
+			$("#print4").html(arr.join(" "));
 		
 		}
 	</script>

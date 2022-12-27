@@ -9,6 +9,7 @@
 		height: 150px;
 	}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>기본 문법 문제</h1>
@@ -26,9 +27,12 @@
 	
 	<script>
     	function stringLength(){
+			/*
 			const text1 = document.getElementById("text1").value;
         	document.getElementById("result1").innerHTML = "보기의 문자열 길이는 " + text1.length + "글자 입니다.";
-    	}
+			*/
+			$("#result1").html("보기의 문자열 길이는 " + $("#text1").val().length + "글자 입니다.");
+		}
 	</script>
 	
 	<br><br>
@@ -45,17 +49,19 @@
 	
 	<script>
     	function stringSplit(){
-
-        	//const la1 = document.getElementById("la1");
-        	//const arr = la1.innerHTML.split(",");
-
-			// 위의 두줄을 한 줄로 줄여서
+			/*
 			const arr = document.getElementById("la1").innerHTML.split(",");
 			
         	const result = document.getElementById("result2");
         	for(let i=0; i<arr.length; i++){
         		result.innerHTML += (i + 1) + ". "+ arr[i] + "<br>";
         	}
+			*/
+
+			const arr = $("#la1").html().split(",");
+			for(let i=0; i<arr.length; i++){
+				$("#result2").html($("#result2").html() + (i+1) + ". " + arr[i] + "<br>");
+			}
 
     	}
 	</script>

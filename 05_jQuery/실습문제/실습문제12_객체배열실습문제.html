@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>객체 실습 문제</h1>
@@ -52,10 +53,12 @@
     	function student(){
         	let objectArr = [] ; //객체 배열 생성
 
+			/*
         	let nameTd = document.getElementsByClassName("name");
         	let ageTd = document.getElementsByClassName("age");
         	let addrTd = document.getElementsByClassName("addr");
-        	
+        	*/
+
             for(let i = 0; i < 3; i++){
 				objectArr.push(new Student(prompt((i + 1) + "번째 학생 이름 입력"),
 										   prompt((i + 1) + "번째 학생 나이 입력"),
@@ -66,9 +69,9 @@
 
 			for(var i=0; i<3; i++){
 				with(objectArr[i]){
-					nameTd[i].innerHTML = name;
-					ageTd[i].innerHTML = age;
-					addrTd[i].innerHTML = addr;
+					$(".name").eq(i).html(name);
+					$(".age").eq(i).html(age);
+					$(".addr").eq(i).html(addr);
 				}
 			}
     	}

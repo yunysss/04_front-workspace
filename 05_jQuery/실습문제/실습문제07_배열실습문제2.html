@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
         <h1> 배열 실습 문제2 </h1>
@@ -23,6 +24,7 @@
 
         <script>
         function reverseTest(){
+            /*
             const stringla1 = document.getElementById("stringla1").innerHTML.split(' ');
             const stringla2 = document.getElementById("stringla2").innerHTML.split(' ');
 
@@ -31,9 +33,13 @@
 
             const arr = data1.concat(data2);
 
-            //const str = arr.join('');
-            //document.getElementById("print").innerHTML = str;
             document.getElementById("print").innerHTML = arr.join('');
+            */
+
+            const data1 = $("#stringla1").html().split(" ").reverse();
+            const data2 = $("#stringla2").html().split(" ").reverse();
+
+            $("#print").html(data1.concat(data2).join(""));
 
         }   
         </script> 

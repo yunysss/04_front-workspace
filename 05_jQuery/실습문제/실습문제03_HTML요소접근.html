@@ -11,6 +11,7 @@
 	border: 1px solid #6666ff;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h2>HTML 태그에 접근 테스트</h2>
@@ -35,52 +36,18 @@
 	
 	<script>
 		function printValue() {
-
-			/* ----------------------------------------------
-			const inputEl = document.getElementsByTagName("input");
-			const userName = inputEl[0].value;
-
-			const productName = document.getElementById("pname").value;
-
-			const priceInput = document.getElementsByName("price");
-			const price = priceInput[0].value;
-
-			const area = document.getElementById("area");
-
-			area.innerHTML = "";
-			area.innerHTML += "구입자 : " + userName + "님<br>";
-			area.innerHTML += "구입상품 : " + productName + "<br>";
-			area.innerHTML += "구매가격 : " + price + "만원";
-			------------------------------------------------*/
-
-
-
-
-			/* 위의 소스코드들을 쵸큼 줄인 버전 -------------------
-			const userName = document.getElementsByTagName("input")[0].value;
-			const productName = document.getElementById("pname").value;
-			const price = document.getElementsByName("price")[0].value;
-
-			const area = document.getElementById("area");
-
-			area.innerHTML = "";
-			area.innerHTML += "구입자 : " + userName + "님<br>";
-			area.innerHTML += "구입상품 : " + productName + "<br>";
-			area.innerHTML += "구매가격 : " + price + "만원";
-			-------------------------------------------------- */
-
-
-			
-			// 겁나 줄인버전
+			/*
 			const area = document.getElementById("area");
 			area.innerHTML = "";
 			area.innerHTML += "구입자 : " + document.getElementsByTagName("input")[0].value + "님<br>";
 			area.innerHTML += "구입상품 : " + document.getElementById("pname").value + "<br>";
 			area.innerHTML += "구매가격 : " + document.getElementsByName("price")[0].value + "만원";
+			*/
 
-
-
-
+			let str = "구입자 : " + $("input").eq(0).val() + "님<br>"
+					+ "구입상품 : " + $("#pname").val() + "<br>"
+					+ "구매가격 : " + $("input[name=price]").val() + "만원";
+			$("#area").html(str);
 		}
 	</script>
 </body>

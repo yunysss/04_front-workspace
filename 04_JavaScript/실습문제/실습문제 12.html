@@ -10,10 +10,6 @@
             width:100px;
             height:50px;
         }
-        caption{
-            caption-side: bottom;
-            color:red;
-        }
     </style>
 </head>
 <body>
@@ -45,18 +41,20 @@
     </div>
         
     <script>
-        
-        function arrayTest(){
-            const student0 = {};
-            const student1 = {};
-            const student2 = {};
-            const objectArr = [student0, student1, student2];
+        function Student(name, age, address){
+            this.name = name;
+            this.age = age;
+            this.address = address;
+        }
+
+        function student(){
+            let objectArr = [];
             
             for(let i=0; i<=2; i++){
-                objectArr[i].name = prompt(i+1 + "번째 학생 이름 입력");
-                objectArr[i].age = prompt(i+1 + "번째 학생 나이 입력");
-                objectArr[i].address = prompt(i+1 + "번째 학생 주소 입력");
-            };
+                objectArr.push(new Student(prompt((i+1) + "번째 학생 이름 입력"),
+                                           prompt((i+1) + "번째 학생 나이 입력"),
+                                           prompt((i+1) + "번째 학생 주소 입력")));
+            }
 
             console.log(objectArr); 
 

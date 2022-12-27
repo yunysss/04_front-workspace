@@ -20,25 +20,39 @@
     <button onclick="outputText();">출력</button>
 
     <script>
-        const member = {};
+        let member = {};
+        
         function inputText(){
-            name = prompt("이름 입력 : ");
-            age = prompt("나이 입력 : ");
-            address = prompt("주소 입력 : ");
-            
+            let name = prompt("이름 입력 : ");
+            let age = prompt("나이 입력 : ");
+            let addr = prompt("주소 입력 : ");
+
             member.name = name;
             member.age = age;
-            member.address = address;
+            member.addr = addr;
         }
 
         function outputText(){
-            if("name" in member){
-                document.getElementById("area").innerHTML += "이름 : " + member.name + "<br>";
-                document.getElementById("area").innerHTML += "나이 : " + member.age + "세<br>"
-                document.getElementById("area").innerHTML += "주소 : " + member.address;
+            if(member == null){
+                alert("입력을 먼저 진행해주세요.");
             } else{
-                alert("먼저 입력해주세요.");
+                let flag = true;
+
+                for(let key in member){
+                    if(member[key] == "" || member[key] == null){
+                        flag = false;
+                    }
+                }
+
+                if(flag){
+                    document.getElementById("area").innerHTML += "이름 : " + member.name + "<br>";
+                    document.getElementById("area").innerHTML += "나이 : " + member.age + "세<br>"
+                    document.getElementById("area").innerHTML += "주소 : " + member.addr;
+                } else{
+                    alert("값이 누락되었습니다.");
+                }
             }
+            member = null;
         }
     </script>
 </body>

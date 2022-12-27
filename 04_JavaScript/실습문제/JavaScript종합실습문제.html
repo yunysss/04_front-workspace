@@ -19,7 +19,7 @@
     <script>
         function test1(){
             const message = prompt("메세지를 입력하세요");
-            if(message == ""){
+            if(!message){
                 document.getElementById("test1").innerHTML = "메세지가 입력되지 않았습니다.";
             } else{
                 document.getElementById("test1").innerHTML = message;
@@ -64,7 +64,9 @@
             for(let i=0; i<10; i++){
                 arr[i] = parseInt(Math.random() * 100 + 1);
             };
-            arr.sort().reverse();
+            arr.sort(function(left, right){
+                return right-left;
+            });
             
             for(let i in arr){
                 document.querySelector("#test3>ul").innerHTML += "<li>" + arr[i] + "</li>";
@@ -114,7 +116,9 @@
 
             for(let i in arr){
                 if(arr[i].innerHTML.length >= 3){
-                    document.getElementById("checkStr").innerHTML += arr[i].innerHTML + "<br>";
+                    // document.getElementById("checkStr").innerHTML += arr[i].innerHTML + "<br>";
+                    let copy = arr[i].cloneNode(true);
+                    document.getElementById("checkStr").appendChild(copy);
                 }
             }
         }
@@ -145,13 +149,14 @@
             const su2 = Number(document.getElementById("su2").value);
             const op = document.getElementById("op").value;
 
-            let result = 0;
-            switch(op){
-                case "+": result = su1 + su2; break;
-                case "-": result = Math.max(su1, su2) - Math.min(su1, su2); break;
-                case "*": result = su1 * su2; break;
-                case "/": result = su1 / su2;
-            };
+            // let result = 0;
+            // switch(op){
+            //     case "+": result = su1 + su2; break;
+            //     case "-": result = Math.max(su1, su2) - Math.min(su1, su2); break;
+            //     case "*": result = su1 * su2; break;
+            //     case "/": result = su1 / su2;
+            // };
+            let result = eval(su1 + op + su2);
             document.getElementById("calc-result").innerHTML = result;
         }
     </script>
@@ -183,17 +188,15 @@
     <div class="input-container"></div>
 
     <script>
-        const arr = [];
+        let count = 0;
         function test8(){
-            if(arr.length < 10){
-                arr.push("<input type='text'>");
+            const inputEl = "<input type='text'>";
+            if(count < 10){
+                document.querySelector("div.input-container").innerHTML += inputEl + "<br>";
+                count++;
             } else{
-                alert("10개까지만 추가 가능합니다.");
+                alert("10개까지만 추가 가능합니다.")
             }
-            console.log(arr);
-            let num = 0;
-            
-            document.getElementsByClassName("input-container")[0].innerHTML += arr[num++]; 
         }
     </script>
     <hr>
@@ -214,7 +217,7 @@
 
             for(let key in user){
                 if(key == "birthDay"){
-                    ulEl.innerHTML += "<li>" + key + " : " + (user.birthDay * 9 * 18) + "/" + (2000 / 18 / user.birthDay) + "/" + 2000 / 9 / user.birthDay + "</li>";
+                    ulEl.innerHTML += "<li>" + key + " : " + new Date(2000, 8, 18) + "</li>";
                 } else{
                     ulEl.innerHTML += "<li>" + key + " : " + user[key] + "</li>";
                 }
@@ -237,26 +240,59 @@
     <div id="data-table"></div>
 
     <script>
-        const listArr = [{no:1,title:"첫번째",writer:"유저1",enrolldate:new Date()},
-         {no:2,title:"두번째",writer:"유저2",enrolldate:new Date()},
-         {no:3,title:"세번째",writer:"유저3",enrolldate:new Date()},
-         {no:4,title:"네번째",writer:"유저4",enrolldate:new Date()}];
-         let elementNode = null;
+        // const listArr = [{no:1,title:"첫번째",writer:"유저1",enrolldate:new Date()},
+        //  {no:2,title:"두번째",writer:"유저2",enrolldate:new Date()},
+        //  {no:3,title:"세번째",writer:"유저3",enrolldate:new Date()},
+        //  {no:4,title:"네번째",writer:"유저4",enrolldate:new Date()}];
+        //  let elementNode = null;
+        // function test10(){
+        //     const divEl = document.getElementById("data-table");
+
+        //     elementNode = document.createElement("table");
+        //     divEl.appendChild(elementNode);
+        //     elementNode.border = "1";
+        //     elementNode.width = "500";
+        //     elementNode.height = "100";
+        //     for(let i in listArr){
+        //         elementNode.appendChild(document.createElement("tr"));
+        //         for(let key in listArr[i]){
+        //             elementNode.appendChild(document.createElement("td")).appendChild(document.createTextNode(listArr[i][key]));
+        //         };
+        //     };
+            
+        // }
+        function Board(no, title, writer, enrolldate){
+            this.no = no;
+            this.title = title;
+            this.writer = writer;
+            this.enrolldate = enrolldate ? enrolldate : new Date(); 
+        }
+        
+        const boardList = [new Board(1, "첫번째", "유저1"), 
+                           new Board(2, "두번째", "유저2"),
+                           new Board(3, "세번째", "유저3"),
+                           new Board(4, "네번째", "유저4")];
+
         function test10(){
+            
             const divEl = document.getElementById("data-table");
 
-            elementNode = document.createElement("table");
-            divEl.appendChild(elementNode);
-            elementNode.border = "1";
-            elementNode.width = "500";
-            elementNode.height = "100";
-            for(let i in listArr){
-                elementNode.appendChild(document.createElement("tr"));
-                for(let key in listArr[i]){
-                    elementNode.appendChild(document.createElement("td")).appendChild(document.createTextNode(listArr[i][key]));
-                };
-            };
-            
+            let tableEl = document.createElement("table");
+            tableEl.border = "1";
+
+            boardList.forEach(function(boardObj){
+
+                let trEl = document.createElement("tr");
+                for(let key in boardObj){
+                    let tdEl = document.createElement("td");
+                    tdEl.appendChild(document.createTextNode(boardObj[key]));
+                    trEl.appendChild(tdEl);
+                }
+                tableEl.appendChild(trEl);
+            });
+
+            divEl.appendChild(tableEl);
+
         }
     </script>
     <h2>
@@ -273,26 +309,30 @@
     <button onclick="test11();">추가</button>
 
     <script>
-        function User(boardNo, boardTitle, boardWriter, boardDate){
-            this.no=boardNo,
-            this.title=boardTitle,
-            this.writer=boardWriter,
-            this.enrolldate=boardDate
-        }
         function test11(){
-            const boardNo = document.getElementById("boardNo").value;
-            const boardTitle = document.getElementById("boardTitle").value;
-            const boardWriter = document.getElementById("boardWriter").value;
-            const boardDate = document.getElementById("boardDate").value;
-            
-            const newUser = new User(boardNo, boardTitle, boardWriter, boardDate);
+            let boardNo = Number(document.getElementById("boardNo").value);
+            let boardTitle = document.getElementById("boardTitle").value;
+            let boardWriter = document.getElementById("boardWriter").value;
+            let boardDateArr = document.getElementById("boardDate").value.split("-");
+            console.log(document.getElementById("boardDate").value);
+            let boardDate = new Date(boardDateArr[0], boardDateArr[1]-1, boardDateArr[2]);
 
-            listArr.push(newUser);
+            let boardObj = new Board(boardNo, boardTitle, boardWriter, boardDate);
 
-            elementNode.appendChild(document.createElement("tr"));
-            for(let key in newUser){
-                elementNode.appendChild(document.createElement("td")).appendChild(document.createTextNode(newUser[key]));
-            };
+            boardList.push(boardObj);
+
+            console.log(boardList);
+
+            const tableEl = document.querySelector("div#data-table>table");
+
+            let trEl = document.createElement("tr");
+            for(let key in boardObj){
+                let tdEl = document.createElement("td");
+                tdEl.appendChild(document.createTextNode(boardObj[key]));
+                trEl.appendChild(tdEl);
+            }
+
+            tableEl.appendChild(trEl);
         }
     </script>
     <hr>

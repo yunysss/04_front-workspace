@@ -11,13 +11,15 @@
             width:300px;
             background:lightgray;
         }
-        #area{
-            background:orange;
-            width:400px;
-            height:50px;
-            display:none;
-            padding:10px;
-        }
+        div.box {
+            width: 500px;	
+            height: 50px;
+            box-align: center middle;		
+            margin: 10px;
+            padding: 10px;
+            background: #ffcc00;
+            display: none;
+	    }   
     </style>
 </head>
 <body>
@@ -28,37 +30,46 @@
         <input type="radio" name="search" value="author" onclick="searchTest(this.value);">작성자
     </fieldset>
     <hr>
-    <div id="area"></div>
+    <div id="titleBox" class="box">
+		<form method="post" action="">
+			<label> 검색할 제목을 입력하세요 : </label>
+			<br> 
+			<input type="search" name="title" size="50"> &nbsp;
+			<input type="submit" value="검색">
+		</form>
+	</div>
+
+	<div id="dateBox" class="box">
+		<form method="post" action="">
+			<label> 검색할 날짜를 선택하세요 : </label>
+			<br>
+			<input type="date" name="start"> - 
+			<input type="date" name="end"> &nbsp; 
+			<input type="submit" value="검색">
+		</form>
+	</div>
+
+	<div id="authorBox" class="box">
+		<form method="post" action="">
+			<label> 검색할 작성자 아이디를 입력하세요 : </label>
+			<br>
+			<input type="search" name="writer" size="25"> &nbsp; 
+			<input type="submit" value="검색">
+		</form>
+	</div>
+
 
     <script>
-        const area = document.getElementById("area");
-        
-        function searchTest(val){ 
-            switch(val){
-                case "title" : title(); break; 
-                case "date" : date(); break;
-                case "author" : author(); 
+        function searchTest(val){
+            const tag = document.getElementsByClassName("box");
+
+            for(let i=0; i<tag.length; i++){
+                if(val+"Box" == tag[i].id){
+                    tag[i].style.display = "block";
+                } else{
+                    tag[i].style.display = "none";
+                }
             }
-            area.style.display = "block"; 
-        }
-
-        function title(){
-            area.innerHTML = "검색할 제목을 입력하세요 : <br>";
-            area.innerHTML += "<input type='text' size='40'>&nbsp&nbsp&nbsp";
-            area.innerHTML += "<button>검색</button> </form>";
-        }
-
-        function date(){
-            area.innerHTML = "검색할 날짜를 선택하세요 : <br>";
-            area.innerHTML += "<input type='date'> - "
-            area.innerHTML += "<input type='date'>&nbsp&nbsp&nbsp";
-            area.innerHTML += "<button>검색</button>";
-        }
-
-        function author(){
-            area.innerHTML = "검색할 작성자 아이디를 입력하세요 : <br>";
-            area.innerHTML += "<input type='text'>&nbsp&nbsp&nbsp";
-            area.innerHTML += "<button>검색</button>"; 
         }
 
     </script>

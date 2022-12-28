@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            color:gray;
+            padding-left:10px;
+            font-size:10px;
+        }
+        form{
+            border:1px solid lightgray;
+            padding:10px;
+            width:500px;
+        }
+    </style>
+</head>
+<body>
+    <form action="insert.me" method="post">
+        * 아이디 : <input type="text" name="userId" id="userId" required> <br>
+        <label>첫글자는 반드시 영문 소문자로, 그리고 영문소문자, 숫자 포함하여 총 5~16자로 입력하시오.</label> <br><br>
+
+        * 비밀번호 : <input type="password" name="userPwd1" id="userPwd1" required> <br>
+        <label>영문자, 숫자, 특수문자(!@#$%^&*)를 포함하여 총 8~15자로 입력하시오.</label> <br><br>
+
+        * 비밀번호 확인 : <input type="password" name="userPwd2" id="userPwd2" required> <br>
+        <label>위의 비밀번호와 일치하게 입력하시오.</label> <br><br>
+
+        * 이름 : <input type="text" name="userName" id="userName" required> <br>
+        <label>한글로만 이루어져야되며 3글자 이상으로 입력하시오.</label> <br><br>
+        
+        * 전화번호 : <input type="text" name="phone" placeholder="-포함하여 기술" required> <br>
+        <label>맨 앞은 02 또는 010만 올 수 있고 두번째는 3~4글자, 세번째는 4글자가 오도록 입력하시오.</label> <br><br>
+
+        * 취미 : <input type="text" name="hobby" placeholder="축구,농구,야구,독서 등" list="hobbyList"> <br>
+        <datalist id="hobbyList">
+            <option value="soccer">축구</option>
+            <option value="basketball">농구</option>
+            <option value="baseball">야구</option>
+            <option value="reading">독서</option>
+        </datalist>
+        <br>
+        * 거주지 : 
+        <select name="address">
+            <option value="seoul">서울</option>
+            <option value="incheon">인천</option>
+            <option value="busan">부산</option>
+        </select> 
+        <br><br>
+
+        <button type="submit" onclick="return validate();">회원가입</button>
+        <button type="reset">취소</button>
+    </form>
+
+    <script>
+        function validate(){
+            const userId = document.getElementById("userId");
+            const userPwd1 = document.getElementById("userPwd1");
+            const userPwd2 = document.getElementById("userPwd2");
+            const userName = document.getElementById("userName");
+            const phone = document.getElementsByName("phone")[0];
+
+            let regExp = /^[a-z][a-z\d]{4,15}$/;
+            if(!regExp.test(userId.value)){
+                alert("유효한 아이디를 입력해주세요!");
+                userId.select();
+                return false;
+            }
+
+            regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+            if(!regExp.test(userPwd1.value)){
+                alert("유효한 비밀번호를 입력해주세요!");
+                userPwd1.value = "";
+                userPwd1.focus();
+                return false;
+            }
+
+            if(userPwd1.value != userPwd2.value){
+                alert("동일한 비밀번호를 입력해주세요!");
+                userPwd2.value = "";
+                userPwd2.focus();
+                return false;
+            }
+
+            regExp = /^[가-힣]{3,}$/;
+            if(!regExp.test(userName.value)){
+                alert("유효한 이름을 입력해주세요!");
+                userName.select();
+                return false;
+            }
+
+            regExp = /^(02|010)-\d{3,4}-\d{4}$/;
+            if(!regExp.test(phone.value)){
+                alert("유효한 전화번호를 입력해주세요!");
+                phone.select();
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
